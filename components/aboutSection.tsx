@@ -37,7 +37,7 @@ export const AboutSection = () => {
           <span className="font-extrabold text-[#ab8e6f]">AWS</span> to deploy seamless, cloud-native experiences. <br />
           When I’m not coding, you’ll find me diving into the latest tech trends, exploring new frameworks, or building some fun UIs. I’m all about collaboration, creativity, and keeping things fun while delivering quality, secure code.
         </p>
-        <div className="flex flex-col items-center gap-4 mt-20" data-aos="fade-up">
+        <div className="flex flex-col items-center gap-4 mt-15" data-aos="fade-up">
           <p className="font-extrabold tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-[#ab8e6f] to-[#8e5e32]">
             Let’s build something amazing together!
           </p>

@@ -1,7 +1,9 @@
 "use client"
 
 import { AboutSection } from "@/components/aboutSection"
+import { ContactMeSection } from "@/components/contactMeSection"
 import { HeroSection } from "@/components/heroSection"
+import ProjectsSection from "@/components/projectsSection"
 import SkillsSection from "@/components/skillsSections"
 import { SquareMenu } from "lucide-react"
 
@@ -38,6 +40,8 @@ export default function Home() {
       <HeroSection />
       <AboutSection />
       <SkillsSection />
+      <ProjectsSection />
+      <ContactMeSection />
 
       {/* <Navbar sections={sections} />
       <div ref={heroRef} id="home">
