@@ -37,8 +37,22 @@ import {
 import { TbBrandRust } from "react-icons/tb";
 
 const SkillsSection = () => {
-  const [activeCategory, setActiveCategory] = useState("languages");
+  type Skill = {
+    name: string;
+    icon: React.ReactNode;
+  };
 
+  type Skills = {
+    languages: Skill[];
+    database: Skill[];
+    devops: Skill[];
+    testing: Skill[];
+  };
+
+  type Category = keyof Skills;
+
+  const [activeCategory, setActiveCategory] = useState<Category>('languages'); 
+  
   const categories = [
     { id: "languages", label: "Languages & Frameworks" },
     { id: "database", label: "Database" },
@@ -46,7 +60,11 @@ const SkillsSection = () => {
     { id: "testing", label: "Testing & QA" },
   ];
 
-  const skills = {
+  const isValidCategory = (categoryId: string): categoryId is keyof Skills => {
+    return ['languages', 'database', 'devops', 'testing'].includes(categoryId);
+  };
+
+  const skills: Skills = {
     languages: [
       { name: "JavaScript (ES6+)", icon: <SiJavascript size={48} /> },
       { name: "TypeScript", icon: <SiTypescript size={48} /> },
@@ -103,10 +121,16 @@ const SkillsSection = () => {
           {categories.map((category) => (
             <button
               key={category.id}
-              onClick={() => setActiveCategory(category.id)}
+              onClick={() => {
+                if (isValidCategory(category.id)) {
+                  setActiveCategory(category.id);
+                } else {
+                  console.error("Invalid category:", category.id);
+                }
+              }}
               className={`px-6 py-3 rounded-lg font-medium transition-all duration-300 ${
                 activeCategory === category.id
-                  ? "bg-[var(--accent)] text-white shadow-lg shadow-[var(--skills-shadow-light)] dark:shadow-[var(--skills-shadow-dark)] transform scale-105"
+                  ? "bg-[var(--accent)] text-white shadow-[var(--skills-shadow-light)] dark:shadow-[var(--skills-shadow-dark)] transform scale-105"
                   : "bg-[var(--skills-btn-bg)] text-[var(--skills-btn-text)] hover:bg-[var(--skills-btn-hover)]"
               }`}
             >
