@@ -66,7 +66,7 @@ export const ContactMeSection = () => {
       {/* Heading */}
       <div className="text-center z-10 mb-12 animate-fade-up animate-once">
         <h2 className="text-4xl md:text-6xl font-bold text-[var(--contact-heading-text)]">
-          Let's <span className="">Connect</span>
+          Let&apos;s <span className="">Connect</span>
         </h2>
         <p className="text-xl mt-4 text-[var(--contact-text)] max-w-xl mx-auto">
           Whether you have a question or just want to say hi, I’ll try my best

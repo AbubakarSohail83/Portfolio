@@ -13,7 +13,7 @@ export const HeroSection = () => {
 
       <div className="max-w-4xl w-full text-center z-10">
         <h1 className="text-5xl md:text-7xl font-bold mb-6 text-[var(--hero-text-primary)] leading-tight animate-fade-up animate-once">
-          Hi, I'm{" "}
+          Hi, I&apos;m{" "}
           <span className="text-[var(--hero-text-accent)]">
             Abubakar Sohail
           </span>
@@ -27,7 +27,7 @@ export const HeroSection = () => {
         <div className="relative mb-12 max-w-lg mx-auto">
           <div className="h-px w-full bg-gradient-to-r from-transparent via-gray-300 dark:via-gray-700 to-transparent"></div>
           <p className="text-lg text-gray-500 dark:text-gray-400 italic my-6 animate-fade-up animate-delay-200">
-            "Simplifying complexity, one line of code at a time"
+          &quot;Simplifying complexity, one line of code at a time&quot;
           </p>
           <div className="h-px w-full bg-gradient-to-r from-transparent via-gray-300 dark:via-gray-700 to-transparent"></div>
         </div>

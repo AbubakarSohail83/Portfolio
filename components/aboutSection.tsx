@@ -36,7 +36,7 @@ export const AboutSection = () => {
           className="text-lg md:text-xl text-[var(--about-body-text)] leading-relaxed text-center max-w-3xl"
           data-aos="fade-up"
         >
-          Hey there! I'm a passionate and endlessly curious{" "}
+          Hey there! I&apos;m a passionate and endlessly curious{" "}
           <span className="font-bold text-[var(--accent)]">
             Full Stack Developer
           </span>
@@ -59,8 +59,8 @@ export const AboutSection = () => {
           seamless, cloud-native experiences.
           <br />
           <br />
-          When I'm not coding, you'll find me diving into the latest tech
-          trends, exploring new frameworks, or building some fun UIs. I'm all
+          When I&apos;m not coding, you&apos;ll find me diving into the latest tech
+          trends, exploring new frameworks, or building some fun UIs. I&apos;m all
           about collaboration, creativity, and keeping things fun while
           delivering quality, secure code.
         </p>
@@ -70,7 +70,7 @@ export const AboutSection = () => {
           data-aos="fade-up"
         >
           <p className="font-bold text-lg text-[var(--accent)]">
-            Let's build something amazing together!
+            Let&apos;s build something amazing together!
           </p>
           <div className="flex justify-center gap-7">
             <a
