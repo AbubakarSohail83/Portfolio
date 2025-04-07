@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { Mail, Linkedin, Github } from "lucide-react";
-import emailjs from "emailjs-com";
 import { socialLinks } from "@/utils/constants";
 
 export const ContactMeSection = () => {
@@ -27,29 +26,33 @@ export const ContactMeSection = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setIsLoading(true);
+    setIsLoading(true);  // Set loading state to true when the request starts
 
-    emailjs
-      .sendForm(
-        "YOUR_SERVICE_ID",
-        "YOUR_TEMPLATE_ID",
-        e.target as HTMLFormElement,
-        "YOUR_USER_ID"
-      )
-      .then(
-        () => {
-          setSuccess(true);
-          setError(false);
-          setIsLoading(false);
-          setFormData({ name: "", email: "", message: "" });
+    // Send POST request to your backend API
+    fetch('https://abubakar-portfolio-backend-b8dc0575d853.herokuapp.com/api/contact', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
         },
-        () => {
-          setSuccess(false);
-          setError(true);
-          setIsLoading(false);
-        }
-      );
-  };
+        body: JSON.stringify(formData), // Send form data in the request body
+    })
+        .then((response) => {
+            if (response.ok) {
+                setSuccess(true);   // Set success to true if the response is successful
+                setError(false);    // Set error to false
+                setFormData({ name: "", email: "", message: "" }); // Reset the form fields
+            } else {
+                throw new Error("Failed to send the message"); // Throw error if response is not ok
+            }
+        })
+        .catch(() => {
+            setSuccess(false);   // Set success to false if an error occurs
+            setError(true);      // Set error to true
+        })
+        .finally(() => {
+            setIsLoading(false); // Set loading state to false once request is done
+        });
+};
 
   return (
     <section
