@@ -1,15 +1,23 @@
+"use client";
+
 import { useState } from "react";
 import { Mail, Linkedin, Github } from "lucide-react";
 import emailjs from "emailjs-com";
 import { socialLinks } from "@/utils/constants";
 
 export const ContactMeSection = () => {
-  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
   const [isLoading, setIsLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({
       ...prevState,
@@ -21,24 +29,22 @@ export const ContactMeSection = () => {
     e.preventDefault();
     setIsLoading(true);
 
-    const { name, email, message } = formData;
-
     emailjs
       .sendForm(
-        "YOUR_SERVICE_ID", // EmailJS Service ID
-        "YOUR_TEMPLATE_ID", // EmailJS Template ID
+        "YOUR_SERVICE_ID",
+        "YOUR_TEMPLATE_ID",
         e.target as HTMLFormElement,
-        "YOUR_USER_ID" // EmailJS User ID
+        "YOUR_USER_ID"
       )
       .then(
-        (result) => {
-          console.log(result.text);
+        () => {
           setSuccess(true);
+          setError(false);
           setIsLoading(false);
           setFormData({ name: "", email: "", message: "" });
         },
-        (error) => {
-          console.log(error.text);
+        () => {
+          setSuccess(false);
           setError(true);
           setIsLoading(false);
         }
@@ -46,18 +52,27 @@ export const ContactMeSection = () => {
   };
 
   return (
-    <section className="p-20 bg-gradient-to-r from-[#f5f5f0] via-[#e6dfc5] to-[#d4c8a1] flex flex-col min-h-screen items-center">
-      {/* Personal Info Section */}
-      <div className="text-center mb-16">
-        <h2 className="text-[40px] font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#ab8e6f] to-[#8e5e32]">
-          Let's Connect
+    <section
+      id="contact"
+      className="relative min-h-screen w-full bg-gradient-to-br from-[var(--contact-bg-start)] to-[var(--contact-bg-end)] px-6 py-20 md:px-20 flex flex-col items-center justify-center"
+    >
+      {/* Decorative blobs */}
+      <div className="absolute top-10 left-10 w-72 h-72 bg-blue-200 dark:bg-blue-800 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
+      <div className="absolute bottom-10 right-10 w-72 h-72 bg-indigo-200 dark:bg-indigo-800 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
+
+      {/* Heading */}
+      <div className="text-center z-10 mb-12 animate-fade-up animate-once">
+        <h2 className="text-4xl md:text-6xl font-bold text-[var(--contact-heading-text)]">
+          Let's <span className="">Connect</span>
         </h2>
-        <p className="text-2xl text-[#5f4b3a] mt-4">I'm always happy to chat about tech, collaborations, or opportunities!</p>
+        <p className="text-xl mt-4 text-[var(--contact-text)] max-w-xl mx-auto">
+          Whether you have a question or just want to say hi, I’ll try my best
+          to get back to you!
+        </p>
       </div>
 
       {/* Contact Form */}
-      <div className="w-full max-w-4xl bg-white p-8 rounded-xl shadow-xl">
-        <h3 className="text-[30px] font-extrabold text-[#ab8e6f] mb-4 text-center">Contact Me</h3>
+      <div className="w-full max-w-3xl bg-[var(--contact-card-bg-dark)] rounded-2xl shadow-xl p-8 md:p-12 z-10 animate-fade-up animate-delay-100">
         <form onSubmit={handleSubmit} className="flex flex-col gap-6">
           <input
             type="text"
@@ -65,7 +80,7 @@ export const ContactMeSection = () => {
             value={formData.name}
             onChange={handleInputChange}
             placeholder="Your Name"
-            className="p-3 border-2 border-[#c2b79b] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#ab8e6f]"
+            className="p-4 rounded-lg bg-gray-100 text-black border border-gray-200 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-[var(--contact-btn-bg)] dark:focus:ring-[var(--contact-btn-bg)]"
             required
           />
           <input
@@ -74,7 +89,7 @@ export const ContactMeSection = () => {
             value={formData.email}
             onChange={handleInputChange}
             placeholder="Your Email"
-            className="p-3 border-2 border-[#c2b79b] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#ab8e6f]"
+            className="p-4 rounded-lg text-black bg-gray-100 border border-gray-200 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-[var(--contact-btn-bg)] dark:focus:ring-[var(--contact-btn-bg)]"
             required
           />
           <textarea
@@ -82,58 +97,96 @@ export const ContactMeSection = () => {
             value={formData.message}
             onChange={handleInputChange}
             placeholder="Your Message"
-            rows={6}
-            className="p-3 border-2 border-[#c2b79b] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#ab8e6f]"
+            rows={5}
+            className="p-4 rounded-lg bg-gray-100 text-black border border-gray-200 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-[var(--contact-btn-bg)] dark:focus:ring-[var(--contact-btn-bg)]"
             required
           />
           <button
             type="submit"
-            className="bg-[#ab8e6f] text-white p-3 rounded-xl font-bold hover:bg-[#8e5e32] transition-all duration-300"
             disabled={isLoading}
+            className="w-full bg-[var(--contact-btn-bg)] text-[var(--contact-btn-text)] font-semibold py-3 rounded-lg hover:bg-[var(--contact-btn-hover)] transition-all shadow-lg dark:shadow-blue-900"
           >
             {isLoading ? "Sending..." : "Send Message"}
           </button>
           {success && (
-            <p className="text-green-500 mt-4 text-center">Your message has been sent successfully!</p>
+            <p className="text-green-500 text-center mt-2">
+              Message sent successfully!
+            </p>
           )}
           {error && (
-            <p className="text-red-500 mt-4 text-center">There was an error, please try again later.</p>
+            <p className="text-red-500 text-center mt-2">
+              Something went wrong. Try again.
+            </p>
           )}
         </form>
       </div>
 
-      {/* Personal Info Section (Name, Email, etc.) */}
-      <div className="mt-16 flex justify-center gap-8">
-        <div className="text-center">
-          <p className="text-xl font-semibold text-[#5f4b3a]">Name</p>
-          <p className="text-[#ab8e6f] text-lg">Abubakar Sohail</p>
+      {/* Personal Details & Social Links */}
+      <div className="mt-30 flex flex-col gap-10 text-center z-10 animate-fade-up animate-delay-200">
+        {/* Social Links */}
+        <nav className="mt-4 flex justify-center gap-6">
+          <a
+            href={socialLinks.github}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Github
+              size={32}
+              className="hover:text-[var(--contact-text-accent)] dark:hover:text-blue-400 transition-colors"
+            />
+          </a>
+          <a
+            href={socialLinks.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Linkedin
+              size={32}
+              className="hover:text-[var(--contact-text-accent)] dark:hover:text-blue-400 transition-colors"
+            />
+          </a>
+          <a
+            href={`mailto:${socialLinks.email}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Mail
+              size={32}
+              className="hover:text-[var(--contact-text-accent)] dark:hover:text-blue-400 transition-colors"
+            />
+          </a>
+        </nav>
+
+        {/* CV Button */}
+        <a href="/AbubakarSohailResume.pdf" download className="inline-block">
+          <button className="px-7 cursor-pointer bg-[var(--contact-btn-bg)] text-[var(--contact-btn-text)] font-semibold py-3 rounded-lg hover:bg-[var(--contact-btn-hover)] transition-all shadow-lg dark:shadow-blue-900">
+            See My CV
+          </button>
+        </a>
+
+        {/* Contact Info */}
+        <div className="mb-8">
+          <div className="flex flex-col md:flex-row justify-center gap-10 text-[var(--contact-text)]">
+            <div>
+              <p className="font-semibold">Email</p>
+              <p className="text-[var(--contact-text-accent)]">
+                abubakarsohail83@gmail.com
+              </p>
+            </div>
+            <div>
+              <p className="font-semibold">Phone</p>
+              <p className="text-[var(--contact-text-accent)]">
+                +92 321 8825349
+              </p>
+            </div>
+          </div>
         </div>
-        <div className="text-center">
-          <p className="text-xl font-semibold text-[#5f4b3a]">Email</p>
-          <p className="text-[#ab8e6f] text-lg">abubakar.sohail@example.com</p>
-        </div>
-        <div className="text-center">
-          <p className="text-xl font-semibold text-[#5f4b3a]">Phone</p>
-          <p className="text-[#ab8e6f] text-lg">+1 (234) 567-890</p>
-        </div>
+
+        {/* Footer */}
+        <p className="mt-10 text-sm text-gray-500 dark:text-gray-500">
+          © 2025 Abubakar Sohail. All rights reserved.
+        </p>
       </div>
-      <button className="px-2 py-1 bg-[#f5f5f0] text-[#5f4b3a] rounded-xl text-2xl cursor-pointer hover:animate-pulse mt-3">See My CV</button>
-
-
-      {/* Social Media Links */}
-      <div className="flex gap-6 mt-10 justify-center">
-        <a href={socialLinks.github} target="_blank" rel="noopener noreferrer">
-          <Github size={50} className="cursor-pointer hover:text-[#ab8e6f] transition-all duration-300" />
-        </a>
-        <a href={socialLinks.linkedin} target="_blank" rel="noopener noreferrer">
-          <Linkedin size={50} className="cursor-pointer hover:text-[#ab8e6f] transition-all duration-300" />
-        </a>
-        <a href={`mailto:${socialLinks.email}`} target="_blank" rel="noopener noreferrer">
-          <Mail size={50} className="cursor-pointer hover:text-[#ab8e6f] transition-all duration-300" />
-        </a>
-      </div>
-      <p className="pt-10">© 2025 Abubakar Sohail. All rights reserved.</p>
-
     </section>
   );
 };

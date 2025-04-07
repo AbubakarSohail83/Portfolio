@@ -1,25 +1,158 @@
 @import "tailwindcss";
 @import "tailwindcss-animated";
 
-
-/* Light theme (default) */
 :root {
-  --background: #ffffff;
-  --foreground: #0e0d0c;
+  /* Hero Section */
+  --hero-bg-start: #eff6ff; /* slate-50 */
+  --hero-bg-end: #e0e7ff; /* blue-50 */
+  --hero-blob-blue: #bfdbfe; /* blue-200 */
+  --hero-blob-indigo: #c7d2fe; /* indigo-200 */
+  --hero-blob-purple: #ddd6fe; /* purple-200 */
+  --hero-bg-badge: #dbeafe; /* blue-100 */
+  --hero-text-primary: #1f2937; /* gray-800 */
+  --hero-text-accent: #2563eb; /* blue-600 */
+
+  /* About Section */
+  --about-bg-start: #eff6ff; /* blue-50 */
+  --about-bg-end: #e0e7ff; /* indigo-50 */
+  --about-card-bg: rgba(255, 255, 255, 0.8);
+  --about-border: #bfdbfe;
+  --about-heading-text: #1f2937;
+  --about-body-text: #4b5563;
+  --about-badge-bg: #dbeafe;
+  --about-badge-text: #2563eb;
+  --social-icon: #374151;
+
+  /* Skills Section */
+  --skills-bg-start: #eff6ff; /* blue-50 */
+  --skills-bg-end: #e0e7ff; /* indigo-50 */
+  --skills-heading-text: #1f2937; /* gray-800 */
+  --skills-badge-bg: #dbeafe; /* blue-100 */
+  --skills-badge-text: #2563eb; /* blue-600 */
+  --skills-card-bg: #ffffff;
+  --skills-text: #1f2937;
+  --skills-btn-bg: #ffffff;
+  --skills-btn-text: #374151;
+  --skills-btn-hover: #dbeafe;
+  --skills-shadow-light: #bfdbfe;
+  --skills-shadow-dark: #1e3a8a;
+
+  /* Projects Section */
+  --projects-bg-start: #f8fafc; /* slate-50 */
+  --projects-bg-end: #eff6ff; /* blue-50 */
+  --projects-heading-text: #1f2937; /* gray-800 */
+  --projects-subheading-badge-bg: #dbeafe; /* blue-100 */
+  --projects-subheading-badge-text: #2563eb; /* blue-600 */
+  --projects-card-bg: #ffffff; /* white */
+  --projects-card-top-bg: #cadffa; /* blue-50 */
+  --projects-card-title: #1f2937; /* gray-800 */
+  --projects-card-type: #4b5563; /* gray-600 */
+  --projects-card-text: #374151; /* gray-700 */
+  --projects-chip-bg: #dbeafe; /* blue-100 */
+  --projects-chip-text: #1d4ed8; /* blue-700 */
+  --projects-link: #2563eb; /* blue-600 */
+  --projects-link-hover: #1e40af; /* blue-800 */
+  --projects-pagination-bg: #dbeafe; /* blue-100 */
+  --projects-pagination-text: #1d4ed8; /* blue-700 */
+  --projects-pagination-active-bg: #2563eb; /* blue-600 */
+  --projects-pagination-active-text: #ffffff;
+
+  /* Contact Section */
+  --contact-bg-start: #f8fafc; /* slate-50 */
+  --contact-bg-end: #eff6ff; /* blue-50 */
+  --contact-card-bg: #ffffff; /* white */
+  --contact-card-bg-dark: #1f2937; /* gray-800 */
+  --contact-text: #1f2937; /* gray-800 */
+  --contact-heading-text: #1f2937; /* gray-800 */
+  --contact-text-accent: #2563eb; /* blue-600 */
+  --contact-btn-bg: #2563eb; /* blue-600 */
+  --contact-btn-hover: #1e40af; /* blue-800 */
+  --contact-btn-text: #ffffff; /* white */
+  --contact-social-icon: #374151; /* gray-700 */
+
+  /* Accent */
+  --accent: #2563eb;
 }
 
-/* Dark theme */
 .dark {
   --background: #0e0d0c;
   --foreground: #ffffff;
+
+  --hero-bg-start: #111827;
+  --hero-bg-end: #1e3a8a;
+  --hero-card-bg: rgba(31, 41, 55, 0.8);
+  --hero-blob-blue: #1e40af;
+  --hero-blob-indigo: #3730a3;
+  --hero-blob-purple: #6d28d9;
+  --hero-bg-badge: #1e3a8a;
+  --hero-text-primary: #ffffff;
+  --hero-text-accent: #60a5fa;
+
+  --about-bg-start: #111827;
+  --about-bg-end: #1e3a8a;
+  --about-card-bg: rgba(31, 41, 55, 0.8);
+  --about-border: #1e40af;
+  --about-heading-text: #ffffff;
+  --about-body-text: #d1d5db;
+  --about-badge-bg: #1e3a8a;
+  --about-badge-text: #bfdbfe;
+  --social-icon: #d1d5db;
+
+  --skills-bg-start: #111827; /* gray-900 */
+  --skills-bg-end: #1e3a8a; /* blue-950 */
+  --skills-heading-text: #ffffff;
+  --skills-badge-bg: #1e3a8a;
+  --skills-badge-text: #bfdbfe;
+  --skills-card-bg: #1f2937;
+  --skills-text: #ffffff;
+  --skills-btn-bg: #1f2937;
+  --skills-btn-text: #e5e7eb;
+  --skills-btn-hover: #374151;
+  --skills-shadow-light: #60a5fa;
+  --skills-shadow-dark: #1e40af;
+
+  --projects-bg-start: #111827; /* gray-900 */
+  --projects-bg-end: #1e3a8a; /* blue-950 */
+  --projects-heading-text: #ffffff;
+  --projects-subheading-badge-bg: #1e3a8a; /* blue-900 */
+  --projects-subheading-badge-text: #bfdbfe; /* blue-200 */
+  --projects-card-bg: #1f2937; /* gray-800 */
+  --projects-card-top-bg: #1e3a8a; /* blue-900 */
+  --projects-card-title: #ffffff;
+  --projects-card-type: #d1d5db;
+  --projects-card-text: #d1d5db;
+  --projects-chip-bg: #1e3a8a; /* blue-900 */
+  --projects-chip-text: #bfdbfe; /* blue-200 */
+  --projects-link: #60a5fa; /* blue-400 */
+  --projects-link-hover: #93c5fd; /* blue-300 */
+  --projects-pagination-bg: #1e3a8a;
+  --projects-pagination-text: #bfdbfe;
+  --projects-pagination-active-bg: #2563eb;
+  --projects-pagination-active-text: #ffffff;
+
+  --contact-bg-start: #111827; /* gray-900 */
+  --contact-bg-end: #1e3a8a; /* blue-950 */
+  --contact-card-bg: #1f2937; /* gray-800 */
+  --contact-card-bg-dark: #111827; /* gray-900 */
+  --contact-text: #ffffff; /* white */
+  --contact-heading-text: #ffffff; /* white */
+  --contact-text-accent: #60a5fa; /* blue-400 */
+  --contact-btn-bg: #60a5fa; /* blue-400 */
+  --contact-btn-hover: #93c5fd; /* blue-300 */
+  --contact-btn-text: #ffffff; /* white */
+  --contact-social-icon: #d1d5db; /* gray-300 */
+
+  --accent: #60a5fa;
 }
 
-/* Apply the background and foreground colors */
+/* Utility */
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
 
-
-
+a,
+button {
+  cursor: pointer;
+}
