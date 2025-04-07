@@ -149,7 +149,7 @@ export const ContactMeSection = () => {
             />
           </a>
           <a
-            href={`mailto:${socialLinks.email}`}
+            href={`mailto:${socialLinks.gmail}`}
             target="_blank"
             rel="noopener noreferrer"
           >
