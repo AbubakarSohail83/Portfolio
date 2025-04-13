@@ -7,7 +7,6 @@ import {
   FaCss3Alt,
   FaReact,
   FaNodeJs,
-  FaGitAlt,
   FaDocker,
   FaAws,
   FaDatabase,
