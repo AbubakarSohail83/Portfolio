@@ -28,8 +28,7 @@ export const ContactMeSection = () => {
     e.preventDefault();
     setIsLoading(true);  // Set loading state to true when the request starts
 
-    // Send POST request to your backend API
-    fetch('https://abubakar-portfolio-backend-b8dc0575d853.herokuapp.com/api/contact', {
+    fetch('/api/contact', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -52,7 +51,7 @@ export const ContactMeSection = () => {
         .finally(() => {
             setIsLoading(false); // Set loading state to false once request is done
         });
-};
+  };
 
   return (
     <section
@@ -69,7 +68,7 @@ export const ContactMeSection = () => {
           Let&apos;s <span className="">Connect</span>
         </h2>
         <p className="text-xl mt-4 text-[var(--contact-text)] max-w-xl mx-auto">
-          Whether you have a question or just want to say hi, I’ll try my best
+          Whether you have a question or just want to say hi, I&apos;ll try my best
           to get back to you!
         </p>
       </div>

@@ -88,16 +88,13 @@ const SkillsSection = () => {
       { name: "MySQL", icon: <SiMysql size={48} /> },
       { name: "PostgreSQL", icon: <SiPostgresql size={48} /> },
       { name: "SQLite", icon: <SiSqlite size={48} /> },
-      { name: "SQL", icon: <FaDatabase size={48} /> },
-      { name: "NoSQL", icon: <SiMongodb size={48} /> },
     ],
     devops: [
-      { name: "Git", icon: <FaGitAlt size={48} /> },
       { name: "CI/CD", icon: <SiGithubactions size={48} /> },
       { name: "Docker", icon: <FaDocker size={48} /> },
       { name: "Kubernetes", icon: <SiKubernetes size={48} /> },
       { name: "Datadog", icon: <SiDatadog size={48} /> },
-      { name: "AWS", icon: <FaAws size={48} /> },
+      { name: "AWS", icon: <FaAws size={48} /> }
     ],
     testing: [
       { name: "Rspec", icon: <TbBrandRust size={48} /> },

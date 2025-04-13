@@ -40,7 +40,7 @@ export const AboutSection = () => {
           <span className="font-bold text-[var(--accent)]">
             Full Stack Developer
           </span>
-          , always exploring new technologies and pushing my limits. With 3
+          , always exploring new technologies and pushing my limits. With around 3
           years of hands-on experience, I live and breathe the{" "}
           <span className="font-bold text-[var(--accent)]">MERN stack</span>,{" "}
           <span className="font-bold text-[var(--accent)]">Ruby on Rails</span>,

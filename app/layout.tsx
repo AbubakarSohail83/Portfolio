@@ -14,6 +14,49 @@ export const metadata: Metadata = {
   title: "Abubakar Sohail | Full Stack Developer",
   description:
     "Portfolio website of Abubakar Sohail, a Full Stack Developer specializing in modern web applications and beyond.",
+  keywords: [
+    "Full Stack Developer",
+    "AWS Developer",
+    "Ruby on Rails Developer",
+    "MERN Stack Developer",
+    "Next.js Developer",
+    "Web Development",
+    "Cloud Computing",
+    "Backend Development",
+    "Frontend Development",
+    "Software Engineer",
+    "React Developer",
+    "Node.js Developer",
+    "MongoDB Developer",
+    "Express.js Developer",
+    "AWS Solutions Architect",
+    "Cloud Infrastructure",
+    "API Development",
+    "Full Stack Engineer",
+    "Web Application Developer",
+    "Modern Web Technologies"
+  ],
+  authors: [{ name: "Abubakar Sohail" }],
+  creator: "Abubakar Sohail",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://portfolio-tau-ten-45.vercel.app",
+    title: "Abubakar Sohail | Full Stack Developer",
+    description: "Portfolio website of Abubakar Sohail, a Full Stack Developer specializing in modern web applications and beyond.",
+    siteName: "Abubakar Sohail Portfolio",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  }
 };
 
 export default function RootLayout({
@@ -28,7 +71,7 @@ export default function RootLayout({
       >
         <ThemeProvider
           attribute="class"
-          defaultTheme="light"
+          defaultTheme="dark"
           enableSystem
           disableTransitionOnChange
         >
