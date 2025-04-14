@@ -94,7 +94,7 @@ export const projects = [
     type: "Personal Project",
   },  
   {
-    title: "Recruitment Marketing",
+    title: "Recruitment Softwares",
     description:
       "A scalable marketplace platform for recruitment software solutions, enabling robust data management and seamless client-server interactions to optimize recruitment processes.",
     details: [
