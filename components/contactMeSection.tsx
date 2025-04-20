@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Mail, Linkedin, Github } from "lucide-react";
 import { socialLinks } from "@/utils/constants";
+import { ReCaptcha } from "@/widgets/recaptcha";
 
 export const ContactMeSection = () => {
   const [formData, setFormData] = useState({
@@ -13,6 +14,8 @@ export const ContactMeSection = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
+  const [isVerified, setIsVerified] = useState(false);
+  const [recaptchaError, setRecaptchaError] = useState(false);
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -26,30 +29,38 @@ export const ContactMeSection = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setIsLoading(true);  // Set loading state to true when the request starts
+    
+    if (!isVerified) {
+      setRecaptchaError(true);
+      return;
+    }
+
+    setIsLoading(true);
+    setRecaptchaError(false);
 
     fetch('/api/contact', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData), // Send form data in the request body
+        body: JSON.stringify(formData),
     })
         .then((response) => {
             if (response.ok) {
-                setSuccess(true);   // Set success to true if the response is successful
-                setError(false);    // Set error to false
-                setFormData({ name: "", email: "", message: "" }); // Reset the form fields
+                setSuccess(true);
+                setError(false);
+                setFormData({ name: "", email: "", message: "" });
+                setIsVerified(false);
             } else {
-                throw new Error("Failed to send the message"); // Throw error if response is not ok
+                throw new Error("Failed to send the message");
             }
         })
         .catch(() => {
-            setSuccess(false);   // Set success to false if an error occurs
-            setError(true);      // Set error to true
+            setSuccess(false);
+            setError(true);
         })
         .finally(() => {
-            setIsLoading(false); // Set loading state to false once request is done
+            setIsLoading(false);
         });
   };
 
@@ -103,10 +114,15 @@ export const ContactMeSection = () => {
             className="p-4 rounded-lg bg-gray-100 text-black border border-gray-200 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-[var(--contact-btn-bg)] dark:focus:ring-[var(--contact-btn-bg)]"
             required
           />
+          <ReCaptcha 
+            setIsVerified={setIsVerified} 
+            error={recaptchaError}
+            setError={setRecaptchaError}
+          />
           <button
             type="submit"
-            disabled={isLoading}
-            className="w-full bg-[var(--contact-btn-bg)] text-[var(--contact-btn-text)] font-semibold py-3 rounded-lg hover:bg-[var(--contact-btn-hover)] transition-all shadow-lg dark:shadow-blue-900"
+            disabled={!isVerified || isLoading}
+            className="w-full bg-[var(--contact-btn-bg)] text-[var(--contact-btn-text)] font-semibold py-3 rounded-lg hover:bg-[var(--contact-btn-hover)] transition-all shadow-lg dark:shadow-blue-900 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {isLoading ? "Sending..." : "Send Message"}
           </button>
