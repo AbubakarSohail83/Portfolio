@@ -11,10 +11,13 @@ const montserratAlternates = Montserrat_Alternates({
 });
 
 export const metadata: Metadata = {
-  title: "Abubakar Sohail | Full Stack Developer",
+  title: "Abubakar Sohail | Full Stack Software Engineer",
   description:
-    "Portfolio website of Abubakar Sohail, a Full Stack Developer specializing in modern web applications and beyond.",
+    "Portfolio website of Abubakar Sohail, a Full Stack Software Engineer specializing in modern web applications and beyond.",
   keywords: [
+    "Abubakar Sohail",
+    "Abubakar Sohail Portfolio",
+    "AbubakarSohail",
     "Full Stack Developer",
     "AWS Developer",
     "Ruby on Rails Developer",
@@ -41,9 +44,9 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://portfolio-tau-ten-45.vercel.app",
-    title: "Abubakar Sohail | Full Stack Developer",
-    description: "Portfolio website of Abubakar Sohail, a Full Stack Developer specializing in modern web applications and beyond.",
+    url: "https://abubakarsohail.online",
+    title: "Abubakar Sohail | Full Stack Software Engineer",
+    description: "Portfolio website of Abubakar Sohail, a Full Stack Software Engineer specializing in modern web applications and beyond.",
     siteName: "Abubakar Sohail Portfolio",
   },
   robots: {
