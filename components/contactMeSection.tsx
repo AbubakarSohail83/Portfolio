@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Mail, Linkedin, Github } from "lucide-react";
+import { Mail, Linkedin, Github, Send, Download, Phone, MapPin } from "lucide-react";
 import { socialLinks } from "@/utils/constants";
 import { ReCaptcha } from "@/widgets/recaptcha";
 
@@ -67,143 +67,322 @@ export const ContactMeSection = () => {
   return (
     <section
       id="contact"
-      className="relative min-h-screen w-full bg-gradient-to-br from-[var(--contact-bg-start)] to-[var(--contact-bg-end)] px-6 py-20 md:px-20 flex flex-col items-center justify-center"
+      className="relative min-h-screen w-full px-6 py-20 md:px-20 flex flex-col items-center justify-center overflow-hidden"
     >
-      {/* Decorative blobs */}
-      <div className="absolute top-10 left-10 w-72 h-72 bg-blue-200 dark:bg-blue-800 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
-      <div className="absolute bottom-10 right-10 w-72 h-72 bg-indigo-200 dark:bg-indigo-800 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
+      {/* Modern gradient background */}
+      <div 
+        className="absolute inset-0"
+        style={{ background: 'var(--contact-bg)' }}
+      />
+      
+      {/* Enhanced floating elements */}
+      <div className="absolute top-20 left-20 w-80 h-80 rounded-full filter blur-3xl opacity-30 animate-float"
+           style={{ background: 'linear-gradient(45deg, #667eea, #764ba2)' }}></div>
+      <div className="absolute bottom-20 right-20 w-96 h-96 rounded-full filter blur-3xl opacity-30 animate-float"
+           style={{ background: 'linear-gradient(45deg, #f093fb, #f5576c)', animationDelay: '3s' }}></div>
+      <div className="absolute top-1/2 left-10 w-64 h-64 rounded-full filter blur-3xl opacity-20 animate-float"
+           style={{ background: 'linear-gradient(45deg, #ffecd2, #fcb69f)', animationDelay: '1.5s' }}></div>
 
-      {/* Heading */}
-      <div className="text-center z-10 mb-12 animate-fade-up animate-once">
-        <h2 className="text-4xl md:text-6xl font-bold text-[var(--contact-heading-text)]">
-          Let&apos;s <span className="">Connect</span>
-        </h2>
-        <p className="text-xl mt-4 text-[var(--contact-text)] max-w-xl mx-auto">
-          Whether you have a question or just want to say hi, I&apos;ll try my best
-          to get back to you!
-        </p>
-      </div>
-
-      {/* Contact Form */}
-      <div className="w-full max-w-3xl bg-[var(--contact-card-bg-dark)] rounded-2xl shadow-xl p-8 md:p-12 z-10 animate-fade-up animate-delay-100">
-        <form onSubmit={handleSubmit} className="flex flex-col gap-6">
-          <input
-            type="text"
-            name="name"
-            value={formData.name}
-            onChange={handleInputChange}
-            placeholder="Your Name"
-            className="p-4 rounded-lg bg-gray-100 text-black border border-gray-200 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-[var(--contact-btn-bg)] dark:focus:ring-[var(--contact-btn-bg)]"
-            required
-          />
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleInputChange}
-            placeholder="Your Email"
-            className="p-4 rounded-lg text-black bg-gray-100 border border-gray-200 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-[var(--contact-btn-bg)] dark:focus:ring-[var(--contact-btn-bg)]"
-            required
-          />
-          <textarea
-            name="message"
-            value={formData.message}
-            onChange={handleInputChange}
-            placeholder="Your Message"
-            rows={5}
-            className="p-4 rounded-lg bg-gray-100 text-black border border-gray-200 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-[var(--contact-btn-bg)] dark:focus:ring-[var(--contact-btn-bg)]"
-            required
-          />
-          <ReCaptcha 
-            setIsVerified={setIsVerified} 
-            error={recaptchaError}
-            setError={setRecaptchaError}
-          />
-          <button
-            type="submit"
-            disabled={!isVerified || isLoading}
-            className="w-full bg-[var(--contact-btn-bg)] text-[var(--contact-btn-text)] font-semibold py-3 rounded-lg hover:bg-[var(--contact-btn-hover)] transition-all shadow-lg dark:shadow-blue-900 disabled:opacity-50 disabled:cursor-not-allowed"
+      <div className="max-w-7xl w-full z-10 relative">
+        {/* Enhanced header */}
+        <div className="text-center mb-16 animate-fade-up animate-once">
+          <div
+            className="inline-flex items-center px-6 py-3 rounded-full mb-8 glass"
+            style={{ 
+              background: 'var(--hero-badge-bg)',
+              border: '1px solid var(--hero-badge-border)',
+              color: 'var(--hero-badge-text)'
+            }}
           >
-            {isLoading ? "Sending..." : "Send Message"}
-          </button>
-          {success && (
-            <p className="text-green-500 text-center mt-2">
-              Message sent successfully!
-            </p>
-          )}
-          {error && (
-            <p className="text-red-500 text-center mt-2">
-              Something went wrong. Try again.
-            </p>
-          )}
-        </form>
-      </div>
+            <div className="w-2 h-2 bg-yellow-400 rounded-full mr-3 animate-pulse"></div>
+            Get In Touch
+          </div>
 
-      {/* Personal Details & Social Links */}
-      <div className="mt-30 flex flex-col gap-10 text-center z-10 animate-fade-up animate-delay-200">
-        {/* Social Links */}
-        <nav className="mt-4 flex justify-center gap-6">
-          <a
-            href={socialLinks.github}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Github
-              size={32}
-              className="hover:text-[var(--contact-text-accent)] dark:hover:text-blue-400 transition-colors"
-            />
-          </a>
-          <a
-            href={socialLinks.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Linkedin
-              size={32}
-              className="hover:text-[var(--contact-text-accent)] dark:hover:text-blue-400 transition-colors"
-            />
-          </a>
-          <a
-            href={`mailto:${socialLinks.gmail}`}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Mail
-              size={32}
-              className="hover:text-[var(--contact-text-accent)] dark:hover:text-blue-400 transition-colors"
-            />
-          </a>
-        </nav>
+          <h2 className="text-3xl md:text-4xl font-bold mb-6"
+              style={{ color: 'var(--contact-heading-text)' }}>
+            Let&apos;s{" "}
+            <span className="bg-gradient-to-r from-amber-700 via-yellow-600 to-orange-600 bg-clip-text text-transparent">
+              Connect
+            </span>
+          </h2>
+          
+          <p className="text-base md:text-lg max-w-3xl mx-auto leading-relaxed"
+             style={{ color: 'var(--contact-text)' }}>
+            Whether you have a question, want to discuss a project, or just want to say hi, 
+            I&apos;d love to hear from you!
+          </p>
+        </div>
 
-        {/* CV Button */}
-        <a href="/AbubakarSohailResume.pdf" download className="inline-block">
-          <button className="px-7 cursor-pointer bg-[var(--contact-btn-bg)] text-[var(--contact-btn-text)] font-semibold py-3 rounded-lg hover:bg-[var(--contact-btn-hover)] transition-all shadow-lg dark:shadow-blue-900">
-            See My CV
-          </button>
-        </a>
+        {/* Main content grid */}
+        <div className="grid lg:grid-cols-2 gap-12 items-start">
+          {/* Enhanced contact form */}
+          <div className="animate-fade-up animate-delay-100">
+            <div 
+              className="glass rounded-3xl p-8 md:p-10 shadow-modern-lg"
+              style={{ 
+                background: 'var(--contact-form-bg)',
+                border: '1px solid var(--contact-form-border)'
+              }}
+            >
+              <div className="mb-8">
+                <h3 className="text-xl font-bold mb-3"
+                    style={{ color: 'var(--contact-text)' }}>
+                  Send me a message
+                </h3>
+                <p className="opacity-90"
+                   style={{ color: 'var(--contact-text)' }}>
+                  I typically respond within 24 hours
+                </p>
+              </div>
 
-        {/* Contact Info */}
-        <div className="mb-8">
-          <div className="flex flex-col md:flex-row justify-center gap-10 text-[var(--contact-text)]">
-            <div>
-              <p className="font-semibold">Email</p>
-              <p className="text-[var(--contact-text-accent)]">
-                abubakarsohail83@gmail.com
-              </p>
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <label className="text-sm font-medium opacity-90"
+                           style={{ color: 'var(--contact-text)' }}>
+                      Your Name
+                    </label>
+                    <input
+                      type="text"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleInputChange}
+                      placeholder="John Doe"
+                      className="w-full p-4 rounded-2xl glass border-0 focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all placeholder-gray-400"
+                      style={{ 
+                        background: 'var(--contact-input-bg)',
+                        color: 'var(--contact-input-text)',
+                        border: '1px solid var(--contact-input-border)'
+                      }}
+                      required
+                    />
+                  </div>
+                  
+                  <div className="space-y-2">
+                    <label className="text-sm font-medium opacity-90"
+                           style={{ color: 'var(--contact-text)' }}>
+                      Email Address
+                    </label>
+                    <input
+                      type="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      placeholder="john@example.com"
+                      className="w-full p-4 rounded-2xl glass border-0 focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all placeholder-gray-400"
+                      style={{ 
+                        background: 'var(--contact-input-bg)',
+                        color: 'var(--contact-input-text)',
+                        border: '1px solid var(--contact-input-border)'
+                      }}
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  <label className="text-sm font-medium opacity-90"
+                         style={{ color: 'var(--contact-text)' }}>
+                    Message
+                  </label>
+                  <textarea
+                    name="message"
+                    value={formData.message}
+                    onChange={handleInputChange}
+                    placeholder="Tell me about your project or just say hello..."
+                    rows={6}
+                    className="w-full p-4 rounded-2xl glass border-0 focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all placeholder-gray-400 resize-none"
+                    style={{ 
+                      background: 'var(--contact-input-bg)',
+                      color: 'var(--contact-input-text)',
+                      border: '1px solid var(--contact-input-border)'
+                    }}
+                    required
+                  />
+                </div>
+
+                <ReCaptcha 
+                  setIsVerified={setIsVerified} 
+                  error={recaptchaError}
+                  setError={setRecaptchaError}
+                />
+
+                <button
+                  type="submit"
+                  disabled={!isVerified || isLoading}
+                  className="group w-full bg-gradient-to-r from-orange-500 to-red-500 text-white font-semibold py-4 px-8 rounded-2xl hover:from-orange-600 hover:to-red-600 transition-all shadow-modern hover:shadow-modern-lg disabled:opacity-50 disabled:cursor-not-allowed btn-modern flex items-center justify-center"
+                >
+                  {isLoading ? (
+                    <>
+                      <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-3"></div>
+                      Sending...
+                    </>
+                  ) : (
+                    <>
+                      <Send className="w-5 h-5 mr-3 group-hover:translate-x-1 transition-transform" />
+                      Send Message
+                    </>
+                  )}
+                </button>
+
+                {success && (
+                  <div className="p-4 bg-green-500/20 border border-green-500/30 rounded-2xl">
+                    <p className="text-green-400 text-center font-medium">
+                      ✅ Message sent successfully! I&apos;ll get back to you soon.
+                    </p>
+                  </div>
+                )}
+                
+                {error && (
+                  <div className="p-4 bg-red-500/20 border border-red-500/30 rounded-2xl">
+                    <p className="text-red-400 text-center font-medium">
+                      ❌ Something went wrong. Please try again.
+                    </p>
+                  </div>
+                )}
+              </form>
             </div>
-            <div>
-              <p className="font-semibold">Phone</p>
-              <p className="text-[var(--contact-text-accent)]">
-                +92 321 8825349
-              </p>
+          </div>
+
+          {/* Enhanced contact info and links */}
+          <div className="space-y-8 animate-fade-up animate-delay-200">
+            {/* Contact information */}
+            <div 
+              className="glass rounded-3xl p-8 shadow-modern-lg"
+              style={{ 
+                background: 'var(--contact-card-bg)',
+                border: '1px solid var(--contact-card-border)'
+              }}
+            >
+              <h3 className="text-xl font-bold mb-6"
+                  style={{ color: 'var(--contact-text)' }}>
+                Contact Information
+              </h3>
+              
+              <div className="space-y-6">
+                <div className="flex items-center">
+                  <div className="p-3 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-2xl mr-4">
+                    <Mail className="w-6 h-6 text-blue-400" />
+                  </div>
+                  <div>
+                    <p className="text-sm opacity-70" style={{ color: 'var(--contact-text)' }}>
+                      Email
+                    </p>
+                    <p className="font-semibold" style={{ color: 'var(--contact-text-accent)' }}>
+                      abubakarsohail83@gmail.com
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-center">
+                  <div className="p-3 bg-gradient-to-br from-green-500/20 to-teal-500/20 rounded-2xl mr-4">
+                    <Phone className="w-6 h-6 text-green-400" />
+                  </div>
+                  <div>
+                    <p className="text-sm opacity-70" style={{ color: 'var(--contact-text)' }}>
+                      Phone
+                    </p>
+                    <p className="font-semibold" style={{ color: 'var(--contact-text-accent)' }}>
+                      +92 321 8825349
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-center">
+                  <div className="p-3 bg-gradient-to-br from-orange-500/20 to-red-500/20 rounded-2xl mr-4">
+                    <MapPin className="w-6 h-6 text-orange-400" />
+                  </div>
+                  <div>
+                    <p className="text-sm opacity-70" style={{ color: 'var(--contact-text)' }}>
+                      Location
+                    </p>
+                    <p className="font-semibold" style={{ color: 'var(--contact-text-accent)' }}>
+                      Pakistan | United Kingdom | Available Globally (Remote)
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Social links */}
+            <div 
+              className="glass rounded-3xl p-8 shadow-modern-lg"
+              style={{ 
+                background: 'var(--contact-card-bg)',
+                border: '1px solid var(--contact-card-border)'
+              }}
+            >
+              <h3 className="text-xl font-bold mb-6"
+                  style={{ color: 'var(--contact-text)' }}>
+                Connect with me
+              </h3>
+              
+              <div className="flex gap-4">
+                <a
+                  href={socialLinks.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group p-4 glass rounded-2xl transition-all hover:scale-110 hover:shadow-glow flex-1 text-center"
+                  style={{ color: 'var(--contact-social-icon)' }}
+                >
+                  <Github size={32} className="mx-auto mb-2 group-hover:text-yellow-400 transition-colors" />
+                  <p className="text-sm font-medium">GitHub</p>
+                </a>
+                
+                <a
+                  href={socialLinks.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group p-4 glass rounded-2xl transition-all hover:scale-110 hover:shadow-glow flex-1 text-center"
+                  style={{ color: 'var(--contact-social-icon)' }}
+                >
+                  <Linkedin size={32} className="mx-auto mb-2 group-hover:text-yellow-400 transition-colors" />
+                  <p className="text-sm font-medium">LinkedIn</p>
+                </a>
+                
+                <a
+                  href={`mailto:${socialLinks.gmail}`}
+                  className="group p-4 glass rounded-2xl transition-all hover:scale-110 hover:shadow-glow flex-1 text-center"
+                  style={{ color: 'var(--contact-social-icon)' }}
+                >
+                  <Mail size={32} className="mx-auto mb-2 group-hover:text-yellow-400 transition-colors" />
+                  <p className="text-sm font-medium">Email</p>
+                </a>
+              </div>
+            </div>
+
+            {/* CV Download */}
+            <div 
+              className="glass rounded-3xl p-8 shadow-modern-lg text-center"
+              style={{ 
+                background: 'var(--contact-card-bg)',
+                border: '1px solid var(--contact-card-border)'
+              }}
+            >
+              <h3 className="text-xl font-bold mb-4"
+                  style={{ color: 'var(--contact-text)' }}>
+                Download my resume
+              </h3>
+              
+              <a 
+                href="/as.pdf" 
+                download 
+                className="group inline-flex items-center px-8 py-4 bg-gradient-to-r from-purple-500 to-blue-500 text-white font-semibold rounded-2xl hover:from-purple-600 hover:to-blue-600 transition-all shadow-modern hover:shadow-modern-lg btn-modern"
+              >
+                <Download className="w-5 h-5 mr-3 group-hover:translate-y-1 transition-transform" />
+                Download CV
+              </a>
             </div>
           </div>
         </div>
 
         {/* Footer */}
-        <p className="mt-10 text-sm text-gray-500 dark:text-gray-500">
-          © 2025 Abubakar Sohail. All rights reserved.
-        </p>
+        <div className="text-center mt-20 animate-fade-up animate-delay-300">
+          <div className="h-px w-32 bg-gradient-to-r from-transparent via-white/30 to-transparent mx-auto mb-8"></div>
+          <p className="text-sm opacity-60" style={{ color: 'var(--contact-text)' }}>
+            © 2025 Abubakar Sohail. All rights reserved.
+          </p>
+        </div>
       </div>
     </section>
   );
