@@ -67,7 +67,7 @@ export const ContactMeSection = () => {
   return (
     <section
       id="contact"
-      className="relative min-h-screen w-full px-6 py-20 md:px-20 flex flex-col items-center justify-center overflow-hidden"
+      className="relative min-h-screen w-full px-4 sm:px-6 md:px-8 lg:px-20 py-16 sm:py-20 flex flex-col items-center justify-center overflow-hidden"
     >
       {/* Modern gradient background */}
       <div 
@@ -98,7 +98,7 @@ export const ContactMeSection = () => {
             Get In Touch
           </div>
 
-          <h2 className="text-3xl md:text-4xl font-bold mb-6"
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6"
               style={{ color: 'var(--contact-heading-text)' }}>
             Let&apos;s{" "}
             <span className="bg-gradient-to-r from-amber-700 via-yellow-600 to-orange-600 bg-clip-text text-transparent">
@@ -106,15 +106,15 @@ export const ContactMeSection = () => {
             </span>
           </h2>
           
-          <p className="text-base md:text-lg max-w-3xl mx-auto leading-relaxed"
+          <p className="text-sm sm:text-base md:text-lg max-w-3xl mx-auto leading-relaxed px-2"
              style={{ color: 'var(--contact-text)' }}>
             Whether you have a question, want to discuss a project, or just want to say hi, 
             I&apos;d love to hear from you!
           </p>
         </div>
 
-        {/* Main content grid */}
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
+        {/* Main content grid - mobile responsive */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-start w-full max-w-7xl">
           {/* Enhanced contact form */}
           <div className="animate-fade-up animate-delay-100">
             <div 
@@ -135,8 +135,8 @@ export const ContactMeSection = () => {
                 </p>
               </div>
 
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-6">
+              <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                   <div className="space-y-2">
                     <label className="text-sm font-medium opacity-90"
                            style={{ color: 'var(--contact-text)' }}>
@@ -148,7 +148,7 @@ export const ContactMeSection = () => {
                       value={formData.name}
                       onChange={handleInputChange}
                       placeholder="John Doe"
-                      className="w-full p-4 rounded-2xl glass border-0 focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all placeholder-gray-400"
+                      className="w-full p-3 sm:p-4 rounded-2xl glass border-0 focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all placeholder-gray-400 text-sm sm:text-base"
                       style={{ 
                         background: 'var(--contact-input-bg)',
                         color: 'var(--contact-input-text)',
@@ -169,7 +169,7 @@ export const ContactMeSection = () => {
                       value={formData.email}
                       onChange={handleInputChange}
                       placeholder="john@example.com"
-                      className="w-full p-4 rounded-2xl glass border-0 focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all placeholder-gray-400"
+                      className="w-full p-3 sm:p-4 rounded-2xl glass border-0 focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all placeholder-gray-400 text-sm sm:text-base"
                       style={{ 
                         background: 'var(--contact-input-bg)',
                         color: 'var(--contact-input-text)',
@@ -190,8 +190,8 @@ export const ContactMeSection = () => {
                     value={formData.message}
                     onChange={handleInputChange}
                     placeholder="Tell me about your project or just say hello..."
-                    rows={6}
-                    className="w-full p-4 rounded-2xl glass border-0 focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all placeholder-gray-400 resize-none"
+                    rows={5}
+                    className="w-full p-3 sm:p-4 rounded-2xl glass border-0 focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all placeholder-gray-400 resize-none text-sm sm:text-base"
                     style={{ 
                       background: 'var(--contact-input-bg)',
                       color: 'var(--contact-input-text)',
@@ -210,7 +210,7 @@ export const ContactMeSection = () => {
                 <button
                   type="submit"
                   disabled={!isVerified || isLoading}
-                  className="group w-full bg-gradient-to-r from-orange-500 to-red-500 text-white font-semibold py-4 px-8 rounded-2xl hover:from-orange-600 hover:to-red-600 transition-all shadow-modern hover:shadow-modern-lg disabled:opacity-50 disabled:cursor-not-allowed btn-modern flex items-center justify-center"
+                  className="group w-full bg-gradient-to-r from-orange-500 to-red-500 text-white font-semibold py-3 sm:py-4 px-6 sm:px-8 rounded-2xl hover:from-orange-600 hover:to-red-600 transition-all shadow-modern hover:shadow-modern-lg disabled:opacity-50 disabled:cursor-not-allowed btn-modern flex items-center justify-center text-sm sm:text-base"
                 >
                   {isLoading ? (
                     <>

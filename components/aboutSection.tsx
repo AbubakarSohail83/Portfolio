@@ -18,7 +18,7 @@ export const AboutSection = () => {
   ];
 
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 min-h-screen flex items-center justify-center relative overflow-hidden">
+    <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 min-h-screen flex items-center justify-center relative overflow-hidden">
       {/* Modern gradient background */}
       <div 
         className="absolute inset-0"
@@ -33,7 +33,7 @@ export const AboutSection = () => {
 
       <div className="max-w-6xl w-full z-10 relative">
         <div
-          className="glass rounded-3xl p-8 md:p-12 shadow-modern-lg"
+          className="glass rounded-3xl p-6 sm:p-8 md:p-12 shadow-modern-lg"
           style={{ 
             background: 'var(--about-card-bg)',
             border: '1px solid var(--about-card-border)'
@@ -56,7 +56,7 @@ export const AboutSection = () => {
             </div>
 
             <h2
-              className="text-3xl md:text-4xl font-bold mb-6 bg-gradient-to-r from-gray-900 via-gray-700 to-gray-900 bg-clip-text text-transparent"
+              className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6 bg-gradient-to-r from-gray-900 via-gray-700 to-gray-900 bg-clip-text text-transparent"
               style={{ color: 'var(--about-heading-text)' }}
               data-aos="fade-in"
               data-aos-delay="100"
@@ -89,7 +89,7 @@ export const AboutSection = () => {
             {/* Text content */}
             <div className="space-y-6" data-aos="fade-right" data-aos-delay="300">
               <p
-                className="text-base md:text-lg leading-relaxed"
+                className="text-sm sm:text-base md:text-lg leading-relaxed"
                 style={{ color: 'var(--about-body-text)' }}
               >
                 I&apos;m a passionate and endlessly curious{" "}
@@ -106,7 +106,7 @@ export const AboutSection = () => {
               </p>
 
               <p
-                className="text-base md:text-lg leading-relaxed"
+                className="text-sm sm:text-base md:text-lg leading-relaxed"
                 style={{ color: 'var(--about-body-text)' }}
               >
                 I specialize in building scalable, high-performance web apps,
@@ -119,7 +119,7 @@ export const AboutSection = () => {
               </p>
 
               <p
-                className="text-base md:text-lg leading-relaxed"
+                className="text-sm sm:text-base md:text-lg leading-relaxed"
                 style={{ color: 'var(--about-body-text)' }}
               >
                 When I&apos;m not coding, you&apos;ll find me diving into the latest tech

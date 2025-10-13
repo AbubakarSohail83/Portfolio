@@ -29,7 +29,7 @@ const ProjectsSection = () => {
   return (
     <section
       id="projects"
-      className="min-h-screen py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden"
+      className="min-h-screen py-16 sm:py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden"
     >
       {/* Modern gradient background */}
       <div 
@@ -44,8 +44,8 @@ const ProjectsSection = () => {
            style={{ background: 'linear-gradient(45deg, #ffecd2, #fcb69f)', animationDelay: '2s' }}></div>
 
       <div className="max-w-7xl mx-auto relative z-10">
-        {/* Enhanced header */}
-        <div className="text-center mb-20">
+        {/* Enhanced header - mobile responsive */}
+        <div className="text-center mb-16 sm:mb-20 px-2">
           <div
             className="inline-flex items-center px-6 py-3 rounded-full mb-8 glass"
             style={{ 
@@ -58,19 +58,19 @@ const ProjectsSection = () => {
             Portfolio
           </div>
 
-          <h2 className="text-3xl md:text-4xl font-bold mb-6"
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6"
               style={{ color: 'var(--projects-heading-text)' }}>
             My <span className="bg-gradient-to-r from-neutral-600 to-neutral-800 bg-clip-text text-transparent">Projects</span>
           </h2>
 
-          <p className="text-base max-w-3xl mx-auto opacity-90"
+          <p className="text-sm sm:text-base max-w-3xl mx-auto opacity-90 px-2"
              style={{ color: 'var(--projects-heading-text)' }}>
             A showcase of solutions I&apos;ve built, from concept to deployment
           </p>
         </div>
 
-        {/* Enhanced projects grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+        {/* Enhanced projects grid - mobile responsive */}
+        <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 sm:gap-8 mb-12 sm:mb-16">
           {currentProjects.map((project, index) => (
             <div
               key={index}
@@ -92,7 +92,7 @@ const ProjectsSection = () => {
                 <div className="relative z-10">
                   <div className="flex items-start justify-between mb-4">
                     <div>
-                      <h3 className="text-xl md:text-2xl font-bold mb-2"
+                      <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-2"
                           style={{ color: 'var(--projects-card-title)' }}>
                         {project.title}
                       </h3>
@@ -121,9 +121,9 @@ const ProjectsSection = () => {
                 </div>
               </div>
 
-              {/* Enhanced project content */}
-              <div className="p-8">
-                <p className="text-base font-medium mb-6 leading-relaxed"
+              {/* Enhanced project content - mobile responsive */}
+              <div className="p-6 sm:p-8">
+                <p className="text-sm sm:text-base font-medium mb-4 sm:mb-6 leading-relaxed"
                    style={{ color: 'var(--projects-card-text)' }}>
                   {project.description}
                 </p>
