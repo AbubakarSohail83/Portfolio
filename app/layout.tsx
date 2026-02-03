@@ -14,93 +14,66 @@ const inter = Inter({
 /* SEO: Base URL for canonical and OG tags */
 const siteUrl = "https://abubakarsohail.online";
 
-/* SEO: Comprehensive metadata targeting recruiters, hiring managers, and search engines */
+/* SEO: Metadata targeting recruiters and search engines */
 export const metadata: Metadata = {
-  /* SEO: Keyword-rich title targeting brand + role + geography */
-  title: "Abubakar Sohail | Senior Full Stack Software Engineer | Pakistan & UK",
+  /* Title: Brand + Role (clean, professional) */
+  title: "Abubakar Sohail | Senior Full Stack Software Engineer",
   
-  /* SEO: Description targeting recruiter search intent with clear value proposition */
+  /* Meta description: Under 155 chars, targeting recruiter intent */
   description:
-    "Abubakar Sohail is a Senior Full Stack Software Engineer with 4+ years of experience building scalable backend systems, REST/GraphQL APIs, and cloud infrastructure. Available for remote work with UK, European, and international teams. Expertise in Node.js, Ruby on Rails, React, TypeScript, AWS, and PostgreSQL.",
+    "Senior Full Stack Software Engineer building scalable backend systems and APIs. Open to remote and on-site roles in Pakistan and the UK.",
   
-  /* SEO: Comprehensive keyword targeting for brand, role, tech, and geo searches */
+  /* Minimal, relevant keywords */
   keywords: [
-    // Brand keywords
-    "Abubakar",
     "Abubakar Sohail",
-    "Abubakar Sohail Software Engineer",
-    "Abubakar Sohail Full Stack Developer",
-    "Abubakar Sohail Portfolio",
-    // Core role keywords
-    "Software Engineer",
-    "Senior Software Engineer",
-    "Full Stack Software Engineer",
-    "Full Stack Developer",
+    "Senior Full Stack Software Engineer",
     "Backend Engineer",
-    "Web Developer",
-    // Technology keywords
-    "Ruby on Rails Developer",
-    "React Developer",
-    "Node.js Developer",
-    "TypeScript Developer",
-    "JavaScript Engineer",
-    "REST API Developer",
-    "GraphQL Developer",
-    "AWS Software Engineer",
-    "Microservices Engineer",
-    // Geo-targeted keywords
-    "Software Engineer Pakistan",
-    "Full Stack Developer Pakistan",
-    "Software Engineer UK",
-    "Remote Software Engineer",
-    "Remote Full Stack Developer",
-    // Hiring intent keywords
-    "Hire Full Stack Developer",
-    "Hire Software Engineer",
-    "Freelance Full Stack Developer",
-    "Software Engineer for Startups",
-    "Software Engineer for SaaS",
+    "Node.js",
+    "Ruby on Rails",
+    "React",
+    "TypeScript",
+    "AWS",
   ],
   
   authors: [{ name: "Abubakar Sohail", url: siteUrl }],
   creator: "Abubakar Sohail",
   publisher: "Abubakar Sohail",
   
-  /* SEO: Alternate name for brand searches */
+  /* Canonical URL */
   alternates: {
     canonical: siteUrl,
   },
   
-  /* SEO: Open Graph for social sharing and rich previews */
+  /* Open Graph for social sharing */
   openGraph: {
     type: "website",
     locale: "en_US",
     url: siteUrl,
-    title: "Abubakar Sohail | Senior Full Stack Software Engineer | Pakistan & UK",
+    title: "Abubakar Sohail | Senior Full Stack Software Engineer",
     description:
-      "Senior Full Stack Software Engineer specializing in scalable backend systems, API design, and cloud infrastructure. Available for remote work with startups, SaaS companies, and international teams.",
-    siteName: "Abubakar Sohail - Software Engineer Portfolio",
+      "Senior Full Stack Software Engineer specializing in scalable backend systems, API design, and cloud infrastructure.",
+    siteName: "Abubakar Sohail",
     images: [
       {
         url: `${siteUrl}/og-image.png`,
         width: 1200,
         height: 630,
-        alt: "Abubakar Sohail - Senior Full Stack Software Engineer Portfolio",
+        alt: "Abubakar Sohail – Senior Full Stack Software Engineer",
       },
     ],
   },
   
-  /* SEO: Twitter card for Twitter/X sharing */
+  /* Twitter Card */
   twitter: {
     card: "summary_large_image",
     title: "Abubakar Sohail | Senior Full Stack Software Engineer",
     description:
-      "Senior Full Stack Software Engineer available for remote work. Expertise in Node.js, Ruby on Rails, React, and cloud infrastructure.",
+      "Senior Full Stack Software Engineer specializing in scalable backend systems and APIs.",
     images: [`${siteUrl}/og-image.png`],
     creator: "@abubakarsohail",
   },
   
-  /* SEO: Robots directives for search engine crawling */
+  /* Robots directives */
   robots: {
     index: true,
     follow: true,
@@ -113,109 +86,62 @@ export const metadata: Metadata = {
     },
   },
   
-  /* SEO: Verification for search consoles (add your IDs) */
+  /* Verification (add your IDs when ready) */
   verification: {
     google: "your-google-verification-code",
-    // yandex: "your-yandex-verification-code",
-    // bing: "your-bing-verification-code",
   },
   
-  /* SEO: Category for better classification */
   category: "technology",
 };
 
-/* SEO: JSON-LD Structured Data for rich search results */
+/* JSON-LD Structured Data (minimal, valid Schema.org) */
 const jsonLd = {
   "@context": "https://schema.org",
   "@graph": [
-    /* SEO: Person schema for knowledge panel and rich results */
+    /* Person schema */
     {
       "@type": "Person",
       "@id": `${siteUrl}/#person`,
       name: "Abubakar Sohail",
-      alternateName: "Abubakar",
       jobTitle: "Senior Full Stack Software Engineer",
-      description: "Senior Full Stack Software Engineer specializing in scalable backend systems, API design, and cloud infrastructure. Available for remote work with UK, European, and international teams.",
       url: siteUrl,
       image: `${siteUrl}/self.png`,
       email: "abubakarsohail83@gmail.com",
-      /* SEO: Skills/expertise for relevance signals */
       knowsAbout: [
+        "Node.js",
         "Ruby on Rails",
         "React",
         "TypeScript",
-        "Node.js",
-        "JavaScript",
         "AWS",
         "PostgreSQL",
-        "Redis",
         "GraphQL",
         "REST APIs",
-        "Microservices",
-        "Docker",
-        "Kubernetes",
-        "System Design",
-        "Full Stack Development",
-        "Backend Engineering",
       ],
-      /* SEO: Geographic relevance for local searches */
-      address: {
-        "@type": "PostalAddress",
-        addressLocality: "Lahore",
-        addressCountry: "Pakistan",
-      },
-      /* SEO: Service areas for geo-targeting */
-      areaServed: [
-        { "@type": "Country", name: "Pakistan" },
-        { "@type": "Country", name: "United Kingdom" },
-        { "@type": "Continent", name: "Europe" },
-        { "@type": "Text", name: "Remote / Worldwide" },
-      ],
-      /* SEO: Social profiles for sameAs validation */
+      areaServed: ["Pakistan", "United Kingdom", "Remote"],
       sameAs: [
         "https://github.com/abubakarsohail",
         "https://linkedin.com/in/abubakarsohail",
         siteUrl,
       ],
-      /* SEO: Work examples */
-      hasOccupation: {
-        "@type": "Occupation",
-        name: "Senior Full Stack Software Engineer",
-        occupationLocation: {
-          "@type": "Country",
-          name: "Pakistan",
-        },
-        skills: "Node.js, Ruby on Rails, React, TypeScript, AWS, PostgreSQL, GraphQL, Docker, Kubernetes",
-      },
     },
-    /* SEO: WebSite schema for sitelinks search box */
+    /* WebSite schema */
     {
       "@type": "WebSite",
       "@id": `${siteUrl}/#website`,
       url: siteUrl,
-      name: "Abubakar Sohail - Software Engineer Portfolio",
-      description: "Portfolio of Abubakar Sohail, Senior Full Stack Software Engineer",
+      name: "Abubakar Sohail",
       publisher: { "@id": `${siteUrl}/#person` },
       inLanguage: "en-US",
     },
-    /* SEO: WebPage schema for the homepage */
+    /* WebPage schema */
     {
       "@type": "WebPage",
       "@id": `${siteUrl}/#webpage`,
       url: siteUrl,
-      name: "Abubakar Sohail | Senior Full Stack Software Engineer | Pakistan & UK",
-      description: "Portfolio of Abubakar Sohail, Senior Full Stack Software Engineer available for remote work with startups, SaaS companies, and international teams.",
+      name: "Abubakar Sohail | Senior Full Stack Software Engineer",
       isPartOf: { "@id": `${siteUrl}/#website` },
       about: { "@id": `${siteUrl}/#person` },
       inLanguage: "en-US",
-    },
-    /* SEO: ProfilePage for personal branding */
-    {
-      "@type": "ProfilePage",
-      "@id": `${siteUrl}/#profilepage`,
-      url: siteUrl,
-      name: "Abubakar Sohail Portfolio",
-      mainEntity: { "@id": `${siteUrl}/#person` },
     },
   ],
 };

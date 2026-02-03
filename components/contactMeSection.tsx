@@ -284,24 +284,20 @@ export const ContactMeSection = () => {
                 </nav>
               </div>
 
-              {/* Location */}
+              {/* Availability */}
               <div className="card" style={{ padding: '28px' }}>
                 <h3 
                   className="font-semibold text-[var(--text-primary)] text-xl"
                   style={{ marginBottom: '16px' }}
                 >
-                  Location
+                  Availability
                 </h3>
-                <address className="flex items-start not-italic" style={{ gap: '14px' }}>
+                <div className="flex items-start" style={{ gap: '14px' }}>
                   <MapPin className="w-5 h-5 text-[var(--text-tertiary)] flex-shrink-0" style={{ marginTop: '2px' }} aria-hidden="true" />
-                  <div>
-                    {/* SEO: Geographic location for local searches */}
-                    <p className="text-body-lg text-[var(--text-secondary)]" style={{ marginBottom: '4px' }}>
-                      UK | Pakistan (Onsite - Hybrid)
-                    </p>
-                    <p className="text-body text-[var(--text-muted)]">Available for remote work worldwide</p>
-                  </div>
-                </address>
+                  <p className="text-body text-[var(--text-secondary)]" style={{ lineHeight: '1.7' }}>
+                    Open to remote roles globally and on-site opportunities in Pakistan and the UK. No visa sponsorship required for UK engagements.
+                  </p>
+                </div>
               </div>
 
               {/* Resume */}
@@ -333,7 +329,7 @@ export const ContactMeSection = () => {
             style={{ gap: '16px' }}
           >
             <p>&copy; {new Date().getFullYear()} Abubakar Sohail. All rights reserved.</p>
-            <p>Senior Full Stack Software Engineer | Pakistan & UK</p>
+            <p>Senior Full Stack Software Engineer</p>
           </div>
         </footer>
       </div>

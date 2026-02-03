@@ -69,12 +69,12 @@ export const HeroSection = () => {
                 <span className="text-[var(--text-primary)] font-medium">cloud infrastructure (AWS)</span>.
               </p>
 
-              {/* SEO: Geographic and work arrangement keywords */}
+              {/* Collaboration note - skill-first, no geo emphasis */}
               <p 
                 className="text-body text-[var(--text-muted)] animate-fade-in-up delay-300 mx-auto lg:mx-0"
                 style={{ marginBottom: '40px' }}
               >
-                Working with APAC, US, UK & Global teams
+                Collaborating with distributed teams worldwide
               </p>
 
               {/* CTA Buttons with SEO-friendly anchor text */}
@@ -146,10 +146,10 @@ export const HeroSection = () => {
             {/* Right: Profile Image */}
             <div className="flex-shrink-0 animate-fade-in-up delay-300">
               <div className="profile-image">
-                {/* SEO: Keyword-rich alt text for image SEO */}
+                {/* Descriptive alt text - simple, no keyword stuffing */}
                 <Image
                   src="/self.png"
-                  alt="Abubakar Sohail - Senior Full Stack Software Engineer available for remote work with UK and international teams"
+                  alt="Abubakar Sohail – Senior Full Stack Software Engineer"
                   width={320}
                   height={320}
                   className="w-64 h-64 md:w-72 md:h-72 lg:w-80 lg:h-80 object-cover"
