@@ -1,235 +1,285 @@
 "use client";
 
-import React, { useState } from "react";
-import {
-  FaHtml5,
-  FaCss3Alt,
-  FaReact,
-  FaNodeJs,
-  FaDocker,
-  FaAws,
-  FaDatabase,
-} from "react-icons/fa";
-import {
-  SiJavascript,
-  SiTypescript,
-  SiTailwindcss,
-  SiNextdotjs,
-  SiExpress,
-  SiMongodb,
-  SiPostgresql,
-  SiGraphql,
-  SiKubernetes,
-  SiMysql,
-  SiRubyonrails,
-  SiBootstrap,
-  SiJquery,
-  SiRedux,
-  SiJest,
-  SiGithubactions,
-  SiDatadog,
-  SiSqlite,
-  SiPython,
-} from "react-icons/si";
-import { TbBrandRust } from "react-icons/tb";
+import { useState } from "react";
+import Link from "next/link";
+import { Code2, Database, Cloud, Wrench, Sparkles, ArrowRight } from "lucide-react";
+
+type Category = "languages" | "backend" | "database" | "devops" | "ai";
+
+interface SkillCategory {
+  id: Category;
+  label: string;
+  shortLabel: string;
+  icon: React.ElementType;
+  description: string;
+  skills: string[];
+}
+
+const skillCategories: SkillCategory[] = [
+  {
+    id: "languages",
+    label: "Languages & Frontend",
+    shortLabel: "Languages",
+    icon: Code2,
+    description: "Core languages and frontend technologies",
+    skills: [
+      "JavaScript (ES6+)",
+      "TypeScript",
+      "Python",
+      "Ruby",
+      "React.js",
+      "Next.js",
+      "Redux",
+      "Tailwind CSS",
+      "HTML5/CSS3",
+    ],
+  },
+  {
+    id: "backend",
+    label: "Backend & APIs",
+    shortLabel: "Backend",
+    icon: Database,
+    description: "Server-side frameworks and API design",
+    skills: [
+      "Node.js",
+      "Express.js",
+      "NestJS",
+      "Ruby on Rails",
+      "FastAPI",
+      "GraphQL",
+      "REST APIs",
+      "WebSockets",
+      "Microservices",
+    ],
+  },
+  {
+    id: "database",
+    label: "Databases",
+    shortLabel: "Databases",
+    icon: Database,
+    description: "Data persistence and caching",
+    skills: [
+      "PostgreSQL",
+      "MySQL",
+      "MongoDB",
+      "Redis",
+      "SQLite",
+      "Snowflake",
+      "DynamoDB",
+    ],
+  },
+  {
+    id: "devops",
+    label: "DevOps & Cloud",
+    shortLabel: "DevOps",
+    icon: Cloud,
+    description: "Infrastructure and deployment",
+    skills: [
+      "AWS (EC2, S3, Lambda, RDS)",
+      "Docker",
+      "Kubernetes",
+      "CI/CD",
+      "ArgoCD",
+      "Nginx",
+      "Linux/Unix",
+      "Git",
+    ],
+  },
+  {
+    id: "ai",
+    label: "AI & Analytics",
+    shortLabel: "AI",
+    icon: Sparkles,
+    description: "AI integrations and data analytics",
+    skills: [
+      "OpenAI API",
+      "Gemini API",
+      "LLM Integration",
+      "Sentiment Analysis",
+      "Looker Studio",
+      "Datadog",
+      "Sentry",
+    ],
+  },
+];
 
 const SkillsSection = () => {
-  type Skill = {
-    name: string;
-    icon: React.ReactNode;
-  };
+  const [activeCategory, setActiveCategory] = useState<Category>("languages");
 
-  type Skills = {
-    languages: Skill[];
-    database: Skill[];
-    devops: Skill[];
-    testing: Skill[];
-  };
-
-  type Category = keyof Skills;
-
-  const [activeCategory, setActiveCategory] = useState<Category>('languages'); 
-  
-  const categories = [
-    { id: "languages", label: "Languages & Frameworks", icon: "🚀" },
-    { id: "database", label: "Database", icon: "🗄️" },
-    { id: "devops", label: "DevOps & Cloud", icon: "☁️" },
-    { id: "testing", label: "Testing & QA", icon: "🧪" },
-  ];
-
-  const isValidCategory = (categoryId: string): categoryId is keyof Skills => {
-    return ['languages', 'database', 'devops', 'testing'].includes(categoryId);
-  };
-
-  const skills: Skills = {
-    languages: [
-      { name: "JavaScript (ES6+)", icon: <SiJavascript size={48} /> },
-      { name: "TypeScript", icon: <SiTypescript size={48} /> },
-      { name: "React.js", icon: <FaReact size={48} /> },
-      { name: "Next.js", icon: <SiNextdotjs size={48} /> },
-      { name: "Node.js", icon: <FaNodeJs size={48} /> },
-      { name: "Express.js", icon: <SiExpress size={48} /> },
-      { name: "Ruby on Rails", icon: <SiRubyonrails size={48} /> },
-      { name: "Python", icon: <SiPython size={48} /> },
-      { name: "GraphQL", icon: <SiGraphql size={48} /> },
-      { name: "Redux", icon: <SiRedux size={48} /> },
-      { name: "Tailwind CSS", icon: <SiTailwindcss size={48} /> },
-      { name: "Bootstrap", icon: <SiBootstrap size={48} /> },
-      { name: "HTML5", icon: <FaHtml5 size={48} /> },
-      { name: "CSS3", icon: <FaCss3Alt size={48} /> },
-      { name: "jQuery", icon: <SiJquery size={48} /> },
-      { name: "RESTful APIs", icon: <FaDatabase size={48} /> },
-    ],
-    database: [
-      { name: "MongoDB", icon: <SiMongodb size={48} /> },
-      { name: "PostgreSQL", icon: <SiPostgresql size={48} /> },
-      { name: "MySQL", icon: <SiMysql size={48} /> },
-      { name: "SQLite", icon: <SiSqlite size={48} /> },
-    ],
-    devops: [
-      { name: "AWS", icon: <FaAws size={48} /> },
-      { name: "Docker", icon: <FaDocker size={48} /> },
-      { name: "Kubernetes", icon: <SiKubernetes size={48} /> },
-      { name: "CI/CD", icon: <SiGithubactions size={48} /> },
-      { name: "Datadog", icon: <SiDatadog size={48} /> }
-    ],
-    testing: [
-      { name: "Jest", icon: <SiJest size={48} /> },
-      { name: "RSpec", icon: <TbBrandRust size={48} /> }
-    ],
-  };
+  const currentCategory = skillCategories.find((c) => c.id === activeCategory);
 
   return (
-    <section className="py-16 sm:py-20 min-h-screen relative overflow-hidden">
-      {/* Modern gradient background */}
-      <div 
-        className="absolute inset-0"
-        style={{ background: 'var(--skills-bg)' }}
-      />
-      
-      {/* Floating background elements */}
-      <div className="absolute top-20 left-20 w-72 h-72 rounded-full filter blur-3xl opacity-20 animate-float"
-           style={{ background: 'linear-gradient(45deg, #4facfe, #00f2fe)' }}></div>
-      <div className="absolute bottom-20 right-20 w-80 h-80 rounded-full filter blur-3xl opacity-20 animate-float"
-           style={{ background: 'linear-gradient(45deg, #43e97b, #38f9d7)', animationDelay: '3s' }}></div>
-
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Enhanced header - mobile responsive */}
-        <div className="text-center mb-12 sm:mb-16 px-2">
-          <div
-            className="inline-flex items-center px-6 py-3 rounded-full mb-8 glass"
-            style={{ 
-              background: 'var(--skills-badge-bg)',
-              border: '1px solid var(--skills-badge-border)',
-              color: 'var(--skills-badge-text)'
-            }}
-          >
-            <div className="w-2 h-2 bg-cyan-400 rounded-full mr-3 animate-pulse"></div>
-            Expertise
+    <section id="skills" className="section">
+      <div className="container">
+        {/* Section Header */}
+        <div className="section-header">
+          <div className="section-badge">
+            <Wrench className="w-4 h-4" />
+            Skills
           </div>
-
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6"
-              style={{ color: 'var(--skills-heading-text)' }}>
-            My <span className="bg-gradient-to-r from-neutral-600 to-neutral-800 bg-clip-text text-transparent">Skills</span>
+          <h2 className="section-title">
+            Technical <span className="gradient-text">Expertise</span>
           </h2>
-
-          <p className="text-sm sm:text-base max-w-2xl mx-auto opacity-90 px-2"
-             style={{ color: 'var(--skills-heading-text)' }}>
-            Technologies and tools I use to bring ideas to life
+          {/* SEO: Description targeting technology-specific searches */}
+          <p className="section-description">
+            Full stack developer proficient in TypeScript, React, GraphQL, PostgreSQL, Docker, and Kubernetes
           </p>
         </div>
 
-        {/* Enhanced category buttons - mobile responsive */}
-        <div className="flex flex-wrap justify-center mb-12 sm:mb-16 gap-3 sm:gap-4 px-2">
-          {categories.map((category) => (
-            <button
-              key={category.id}
-              onClick={() => {
-                if (isValidCategory(category.id)) {
-                  setActiveCategory(category.id);
-                } else {
-                  console.error("Invalid category:", category.id);
-                }
-              }}
-              className={`group px-4 sm:px-6 lg:px-8 py-3 sm:py-4 rounded-2xl font-semibold transition-all duration-300 btn-modern text-sm sm:text-base ${
-                activeCategory === category.id
-                  ? "shadow-modern-lg transform scale-105"
-                  : "hover:scale-105"
-              }`}
-              style={{
-                background: activeCategory === category.id 
-                  ? 'var(--skills-btn-active)' 
-                  : 'var(--skills-btn-bg)',
-                color: activeCategory === category.id 
-                  ? 'var(--skills-btn-active-text)' 
-                  : 'var(--skills-btn-text)',
-                border: '1px solid var(--skills-card-border)'
-              }}
-            >
-              <span className="flex items-center">
-                <span className="mr-1 sm:mr-2 text-base sm:text-lg">{category.icon}</span>
-                <span className="hidden sm:inline">{category.label}</span>
-                <span className="sm:hidden">{category.label.split(' ')[0]}</span>
-              </span>
-            </button>
-          ))}
-        </div>
+        <div className="content-wrapper">
+          {/* Category Tabs */}
+          <nav 
+            className="flex flex-wrap justify-center" 
+            style={{ gap: '12px', marginBottom: '40px' }}
+            aria-label="Skill categories"
+          >
+            {skillCategories.map((category) => {
+              const Icon = category.icon;
+              const isActive = activeCategory === category.id;
 
-        {/* Enhanced skills grid - mobile responsive */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-6 mb-8 sm:mb-12">
-          {skills[activeCategory].map((skill, index) => (
-            <div
-              key={index}
-              className="group glass rounded-3xl p-4 sm:p-6 shadow-modern hover:shadow-modern-lg transition-all duration-300 transform hover:-translate-y-2 hover:scale-105"
-              style={{ 
-                background: 'var(--skills-card-bg)',
-                border: '1px solid var(--skills-card-border)'
-              }}
-            >
-              {/* Skill icon with glow effect - mobile responsive */}
-              <div className="flex justify-center mb-3 sm:mb-4">
-                <div className="p-3 sm:p-4 rounded-2xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 group-hover:from-blue-500/30 group-hover:to-purple-500/30 transition-all duration-300">
-                  <div className="text-blue-500 group-hover:text-purple-500 transition-colors duration-300 [&>svg]:w-8 [&>svg]:h-8 sm:[&>svg]:w-12 sm:[&>svg]:h-12">
-                    {skill.icon}
-                  </div>
+              return (
+                <button
+                  key={category.id}
+                  onClick={() => setActiveCategory(category.id)}
+                  className={`flex items-center rounded-xl text-body font-medium transition-all ${
+                    isActive
+                      ? "bg-[var(--accent-primary)] text-white"
+                      : "bg-[var(--surface-tertiary)] text-[var(--text-secondary)] hover:bg-[var(--surface-elevated)] border border-[var(--border-primary)]"
+                  }`}
+                  style={{ gap: '10px', padding: '12px 20px' }}
+                  aria-pressed={isActive}
+                >
+                  <Icon className="w-5 h-5" aria-hidden="true" />
+                  <span className="hidden sm:inline">{category.label}</span>
+                  <span className="sm:hidden">{category.shortLabel}</span>
+                </button>
+              );
+            })}
+          </nav>
+
+          {/* Active Category Content */}
+          {currentCategory && (
+            <div className="card animate-fade-in" style={{ padding: '32px', marginBottom: '32px' }}>
+              <div className="flex items-center" style={{ gap: '16px', marginBottom: '28px' }}>
+                <div 
+                  className="rounded-xl bg-[rgba(99,102,241,0.1)]"
+                  style={{ padding: '14px' }}
+                >
+                  <currentCategory.icon className="w-6 h-6 text-[var(--accent-primary)]" aria-hidden="true" />
+                </div>
+                <div>
+                  {/* SEO: H3 for category name */}
+                  <h3 
+                    className="font-semibold text-[var(--text-primary)] text-xl"
+                    style={{ marginBottom: '4px' }}
+                  >
+                    {currentCategory.label}
+                  </h3>
+                  <p className="text-body text-[var(--text-tertiary)]">
+                    {currentCategory.description}
+                  </p>
                 </div>
               </div>
 
-              {/* Skill name - mobile responsive */}
-              <h3 className="font-semibold text-xs sm:text-sm lg:text-base text-center"
-                  style={{ color: 'var(--skills-text)' }}>
-                {skill.name}
-              </h3>
+              {/* Skills Grid */}
+              <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4" style={{ gap: '12px' }}>
+                {currentCategory.skills.map((skill, index) => (
+                  <li
+                    key={index}
+                    className="rounded-xl bg-[var(--surface-tertiary)] border border-[var(--border-primary)] text-center text-body text-[var(--text-secondary)] hover:border-[var(--accent-primary)] hover:text-[var(--text-primary)] transition-all cursor-default"
+                    style={{ padding: '14px' }}
+                  >
+                    {skill}
+                  </li>
+                ))}
+              </ul>
             </div>
-          ))}
-        </div>
+          )}
 
-        {/* Stats section - mobile responsive */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 max-w-4xl mx-auto px-2">
-          {[
-            { number: "16+", label: "Technologies", icon: "⚡" },
-            { number: "3+", label: "Years Experience", icon: "🚀" },
-            { number: "7+", label: "Major Projects", icon: "💼" },
-            { number: "100%", label: "Passion", icon: "❤️" }
-          ].map((stat, index) => (
-            <div
-              key={index}
-              className="text-center p-4 sm:p-6 glass rounded-2xl shadow-modern hover:shadow-modern-lg transition-all duration-300 animate-float"
-              style={{ 
-                background: 'var(--skills-card-bg)',
-                border: '1px solid var(--skills-card-border)',
-                animationDelay: `${index * 0.2}s`
-              }}
-            >
-              <div className="text-xl sm:text-2xl mb-1 sm:mb-2">{stat.icon}</div>
-              <div className="text-lg sm:text-2xl font-bold mb-1 bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
-                {stat.number}
-              </div>
-              <div className="text-xs sm:text-sm opacity-70" style={{ color: 'var(--skills-text)' }}>
-                {stat.label}
-              </div>
+          {/* Stats */}
+          <div className="grid grid-cols-3" style={{ gap: '20px', marginBottom: '32px' }}>
+            <div className="card text-center hover-lift" style={{ padding: '24px' }}>
+              <div className="text-3xl md:text-4xl font-semibold gradient-text" style={{ marginBottom: '8px' }}>20+</div>
+              <div className="text-body text-[var(--text-tertiary)]">Technologies</div>
             </div>
-          ))}
+            <div className="card text-center hover-lift" style={{ padding: '24px' }}>
+              <div className="text-3xl md:text-4xl font-semibold gradient-text" style={{ marginBottom: '8px' }}>5</div>
+              <div className="text-body text-[var(--text-tertiary)]">Domains</div>
+            </div>
+            <div className="card text-center hover-lift" style={{ padding: '24px' }}>
+              <div className="text-3xl md:text-4xl font-semibold gradient-text" style={{ marginBottom: '8px' }}>4+</div>
+              <div className="text-body text-[var(--text-tertiary)]">Years</div>
+            </div>
+          </div>
+
+          {/* SEO: H3 subheading with expertise keywords */}
+          <h3 
+            className="text-title text-[var(--text-primary)] text-center"
+            style={{ marginBottom: '24px' }}
+          >
+            Backend-Focused Full Stack Engineer
+          </h3>
+
+          {/* Expertise Areas */}
+          <div className="card" style={{ padding: '32px', marginBottom: '32px' }}>
+            <h4 
+              className="font-semibold text-[var(--text-primary)] text-xl text-center"
+              style={{ marginBottom: '28px' }}
+            >
+              Areas of Deep Expertise
+            </h4>
+            <div className="grid sm:grid-cols-2" style={{ gap: '24px' }}>
+              {[
+                {
+                  title: "API-First Architecture",
+                  description: "Scalable REST & GraphQL APIs, microservices, and event-driven systems for high loads",
+                },
+                {
+                  title: "Database Optimization",
+                  description: "Query optimization, indexing, and Redis caching for performance-critical applications",
+                },
+                {
+                  title: "Cloud Infrastructure",
+                  description: "AWS services, containerization with Docker, and CI/CD for reliable deployments",
+                },
+                {
+                  title: "AI/LLM Integration",
+                  description: "OpenAI and Gemini APIs for sentiment analysis and intelligent automation",
+                },
+              ].map((area, index) => (
+                <div key={index} className="flex items-start" style={{ gap: '16px' }}>
+                  <div 
+                    className="rounded-full bg-[var(--accent-primary)] flex-shrink-0"
+                    style={{ width: '10px', height: '10px', marginTop: '6px' }}
+                    aria-hidden="true"
+                  />
+                  <div>
+                    <h5 
+                      className="font-medium text-[var(--text-primary)] text-lg"
+                      style={{ marginBottom: '8px' }}
+                    >
+                      {area.title}
+                    </h5>
+                    <p className="text-body text-[var(--text-tertiary)] leading-relaxed">
+                      {area.description}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* SEO: Internal linking with descriptive anchor text */}
+          <div className="text-center">
+            <Link 
+              href="#contact" 
+              className="btn-primary inline-flex"
+              aria-label="Contact Abubakar Sohail to hire a full stack developer"
+            >
+              Hire Me
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
         </div>
       </div>
     </section>

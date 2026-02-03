@@ -4,114 +4,139 @@ export const socialLinks = {
   gmail: "mailto:abubakarsohail83@gmail.com",
 };
 
-export const projects = [
+export interface Project {
+  title: string;
+  description: string;
+  impact: string;
+  details: string[];
+  technologies: string[];
+  link?: string;
+  type: "Client Project" | "Personal Project" | "Open Source";
+  featured?: boolean;
+}
+
+export const projects: Project[] = [
   {
     title: "TrueCar",
     description:
-      "A multi-tenant platform for buying and selling cars, offering real-time pricing and inventory from local dealerships through a robust microservices architecture.",
+      "A multi-tenant automotive marketplace platform delivering real-time pricing and inventory from local dealerships through a distributed microservices architecture.",
+    impact: "Serving millions of car buyers with upfront, transparent pricing",
     details: [
-      "Built with React and Next.js (SSR) on the frontend, and Ruby on Rails with GraphQL on the backend.",
-      "Implemented scalable GraphQL endpoints using resolver patterns for efficient data access.",
-      "Optimized backend services to handle high traffic and complex data across multiple tenants.",
+      "Built frontend with React and Next.js (SSR) for optimal performance and SEO",
+      "Designed GraphQL endpoints using resolver patterns for efficient data querying across microservices",
+      "Optimized backend services to handle high traffic volumes across multiple tenants",
+      "Implemented caching strategies to reduce database load and improve response times",
     ],
-    technologies: ["React", "Next.js", "Ruby on Rails", "GraphQL"],
+    technologies: ["React", "Next.js", "Ruby on Rails", "GraphQL", "PostgreSQL", "Redis"],
     link: "https://truecar.com",
     type: "Client Project",
+    featured: true,
+  },
+  {
+    title: "Talivity",
+    description:
+      "A scalable marketplace platform for recruitment software solutions with CRM integrations and advanced campaign management.",
+    impact: "Unified recruitment tools ecosystem with seamless data synchronization",
+    details: [
+      "Developed using Node.js, Express.js, and React with TypeScript for type safety",
+      "Integrated HubSpot and Beehiiv CRMs for enhanced marketing workflows",
+      "Implemented data synchronization processes for real-time campaign updates",
+      "Built flexible plugin architecture supporting various recruitment software tools",
+    ],
+    technologies: ["Node.js", "Express.js", "React", "TypeScript", "PostgreSQL", "HubSpot API", "Beehiiv"],
+    link: "https://www.talivity.com",
+    type: "Client Project",
+    featured: true,
+  },
+  {
+    title: "Employer Reputation Navigator",
+    description:
+      "An LLM-powered analytics service that processes unstructured data from multiple sources to generate actionable market insights for recruitment vendors.",
+    impact: "Enabled real-time vendor reputation tracking across the recruitment marketplace",
+    details: [
+      "Designed and built an LLM-powered analytics service using FastAPI, deployed serverless on AWS Lambda for on-demand data processing",
+      "Integrated OpenAI and Gemini APIs for sentiment analysis, theme extraction, summarization, and metric generation",
+      "Processed unstructured data from Glassdoor, Indeed, HubSpot, and Zuora into normalized insights",
+      "Architected data pipeline pushing processed insights to Snowflake for Google Looker Studio dashboards",
+    ],
+    technologies: ["FastAPI", "Python", "AWS Lambda", "OpenAI", "Gemini", "Snowflake", "Ruby on Rails", "PostgreSQL", "Looker Studio"],
+    type: "Client Project",
+    featured: true,
   },
   {
     title: "MapleHR",
     description:
-      "A comprehensive HR management platform that streamlines employee management, organizational structures, claims, tickets, and leave requests through an intuitive interface.",
+      "A comprehensive multi-tenant HR management platform handling employee management, organizational hierarchies, claims, tickets, and leave requests.",
+    impact: "Streamlined HR operations for enterprises with complex organizational structures",
     details: [
-      "Built using Ruby on Rails for the backend and React for the frontend.",
-      "Implemented microservice communication patterns to efficiently handle high-volume requests.",
-      "Decoupled services for improved maintainability, scalability, and future growth.",
+      "Architected microservice communication patterns for high-volume request handling",
+      "Implemented service decoupling for improved maintainability and scalability",
+      "Built robust role-based access control for multi-tenant data isolation",
+      "Designed efficient database schemas for complex organizational hierarchies",
     ],
-    technologies: ["Ruby on Rails", "React", "Microservices", "Redis"],
+    technologies: ["Ruby on Rails", "React", "PostgreSQL", "Redis", "Microservices"],
     link: "https://maplehr.io",
     type: "Client Project",
-  },  
+    featured: true,
+  },
   {
     title: "LetsRemotify",
     description:
-      "A platform connecting businesses with pre-vetted, US-based tech talent across 100+ technologies, using AI-driven matching to streamline the hiring process for top-tier developers.",
+      "A platform connecting businesses with pre-vetted, US-based tech talent using AI-driven matching across 100+ technologies.",
+    impact: "Reduced hiring time through intelligent talent matching",
     details: [
-      "Built with Ruby on Rails for core backend services.",
-      "Leveraged the MERN stack (MongoDB, Express, React, Node.js) to create microservices and frontend modules.",
-      "Developed an AI-powered talent matching algorithm to improve hiring efficiency and precision.",
-      "Enabled a global talent pool, focusing on remote work opportunities for businesses and tech professionals alike.",
+      "Built core backend services with Ruby on Rails for reliability and rapid development",
+      "Developed microservices using the MERN stack for specific feature domains",
+      "Implemented AI-powered talent matching algorithm to improve hiring precision",
+      "Designed scalable architecture supporting a global talent pool",
     ],
-    technologies: ["Ruby on Rails", "MongoDB", "Express", "React", "Node.js", "AI"],
+    technologies: ["Ruby on Rails", "MongoDB", "Express", "React", "Node.js", "AI/ML"],
     link: "https://letsremotify.com",
     type: "Client Project",
-  },  
+  },
   {
     title: "Dooz",
     description:
-      "A Middle Eastern car marketplace connecting buyers to vendors, offering services like comprehensive car inspections, both AI-powered and in-person, for a trustworthy car-buying experience.",
-    link: "https://dooz.com",
+      "A Middle Eastern car marketplace with AI-powered and in-person vehicle inspections for trustworthy car buying experiences.",
+    impact: "Brought transparency to the used car market through verified inspections",
     details: [
-      "Developed a responsive frontend using Angular and Bootstrap for a seamless user experience.",
-      "Built RESTful APIs with .NET Core for efficient backend communication and data handling.",
-      "Designed and optimized MySQL database schemas to support vehicle listings, inspections, and transactions.",
-      "Implemented advanced vehicle inspection processes, combining AI-driven assessments with in-person evaluations to ensure vehicle quality.",
+      "Built responsive frontend with Angular and Bootstrap for seamless UX",
+      "Developed RESTful APIs with .NET Core for efficient backend operations",
+      "Designed MySQL schemas for vehicle listings, inspections, and transactions",
+      "Implemented hybrid inspection system combining AI assessments with manual reviews",
     ],
-    technologies: [".NET", "C#", "Angular", "Bootstrap", "MySQL"],
+    technologies: [".NET Core", "C#", "Angular", "MySQL", "Bootstrap"],
+    link: "https://dooz.com",
     type: "Client Project",
-  },  
+  },
   {
     title: "Roboscout",
     description:
-      "A research platform designed to search academic publications and identify relevant researchers, streamlining the process of discovering academic insights.",
+      "A research platform for discovering academic publications and identifying relevant researchers across vast datasets.",
+    impact: "Accelerated academic research discovery with intelligent search",
     details: [
-      "Developed with Ruby on Rails for backend services, React, and TypeScript for the frontend.",
-      "Implemented efficient backend methods and Sidekiq jobs with Redis and SQLite to manage large-scale search queries and tasks.",
-      "Utilized the OpenAlex API to process vast datasets and integrated React Query for real-time data fetching and updates.",
-      "Created an intuitive UI to display search results and researchers' information in an accessible format.",
+      "Built backend with Ruby on Rails and background processing with Sidekiq",
+      "Integrated OpenAlex API for processing large-scale academic datasets",
+      "Implemented React Query for real-time data fetching and caching",
+      "Designed intuitive search interface with advanced filtering capabilities",
     ],
-    technologies: [
-      "Ruby on Rails",
-      "React",
-      "TypeScript",
-      "Redis",
-      "SQLite",
-      "React Query",
-      "OpenAlex API"
-    ],
+    technologies: ["Ruby on Rails", "React", "TypeScript", "Redis", "SQLite", "OpenAlex API"],
     type: "Personal Project",
-  },  
+  },
   {
     title: "Connectly",
     description:
-      "An in-house communication platform similar to Slack, designed for real-time team collaboration, messaging, and information sharing.",
+      "An in-house real-time communication platform for team collaboration, messaging, and information sharing.",
+    impact: "Enhanced team productivity with instant, organized communication",
     details: [
-      "Developed the backend using Ruby on Rails, with React for the frontend to provide an interactive user experience.",
-      "Implemented WebSocket-based communication using ActionCable Channels for real-time messaging and notifications.",
-      "Focused on seamless team collaboration, allowing users to send messages, share files, and stay updated in real-time.",
-      "Optimized for both web and mobile responsiveness to enhance team productivity across devices.",
+      "Implemented WebSocket-based messaging using ActionCable for real-time updates",
+      "Built notification system for mentions, replies, and channel activity",
+      "Designed responsive UI optimized for both desktop and mobile devices",
+      "Implemented file sharing and message threading for organized conversations",
     ],
-    technologies: ["Ruby on Rails", "React", "ActionCable", "WebSockets"],
+    technologies: ["Ruby on Rails", "React", "ActionCable", "WebSockets", "PostgreSQL"],
     type: "Personal Project",
-  },  
-  {
-    title: "Recruitment Softwares",
-    description:
-      "A scalable marketplace platform for recruitment software solutions, enabling robust data management and seamless client-server interactions to optimize recruitment processes.",
-    details: [
-      "Developed using Node.js, Express.js, React with TypeScript for the frontend, and PostgreSQL for data storage.",
-      "Integrated CRM systems like HubSpot and Beehiiv to enhance marketing workflows and client engagement.",
-      "Improved data synchronization processes and optimized campaign management systems for better efficiency and effectiveness.",
-      "Focused on building a flexible platform that supports a wide range of recruitment software tools for various client needs.",
-    ],
-    technologies: [
-      "Node.js",
-      "Express.js",
-      "React",
-      "TypeScript",
-      "PostgreSQL",
-      "HubSpot",
-      "Beehiiv"
-    ],
-    type: "Client Project",
-  }  
+  },
 ];
+
+export const featuredProjects = projects.filter((p) => p.featured);

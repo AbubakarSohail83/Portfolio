@@ -1,194 +1,166 @@
 "use client";
 
-import { socialLinks } from "@/utils/constants";
-import { Github, Linkedin, Mail, Code, Zap, Heart } from "lucide-react";
-import { useEffect } from "react";
-import AOS from "aos";
-import "aos/dist/aos.css";
+import Link from "next/link";
+import { User, Zap, Globe, Server, Code2, Layers, ArrowRight } from "lucide-react";
+
+const highlights = [
+  {
+    icon: Server,
+    title: "Backend Systems",
+    description: "Scalable APIs, microservices, and data pipelines that handle high loads reliably",
+  },
+  {
+    icon: Layers,
+    title: "Full Stack Delivery",
+    description: "End-to-end ownership from system design to deployment with cohesive experiences",
+  },
+  {
+    icon: Zap,
+    title: "Performance",
+    description: "Track record of 20-30% response time improvements through optimization",
+  },
+  {
+    icon: Globe,
+    title: "Cloud & DevOps",
+    description: "AWS, Docker, Kubernetes, and CI/CD pipelines for reliable deployments",
+  },
+];
+
+const stats = [
+  { value: "4+", label: "Years Experience" },
+  { value: "20+", label: "Projects Delivered" },
+  { value: "1000s", label: "Users Served" },
+  { value: "30%", label: "Avg. Perf Gains" },
+];
 
 export const AboutSection = () => {
-  useEffect(() => {
-    AOS.init({ duration: 1200, once: true });
-  }, []);
-
-  const highlights = [
-    { icon: Code, text: "3+ Years Experience", color: "text-blue-500" },
-    { icon: Zap, text: "Full Stack Expertise", color: "text-purple-500" },
-    { icon: Heart, text: "Passion for Innovation", color: "text-red-500" }
-  ];
-
   return (
-    <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 min-h-screen flex items-center justify-center relative overflow-hidden">
-      {/* Modern gradient background */}
-      <div 
-        className="absolute inset-0"
-        style={{ background: 'var(--about-bg)' }}
-      />
-      
-      {/* Floating elements */}
-      <div className="absolute top-20 left-10 w-64 h-64 rounded-full filter blur-3xl opacity-20 animate-float"
-           style={{ background: 'linear-gradient(45deg, #667eea, #764ba2)' }}></div>
-      <div className="absolute bottom-20 right-10 w-80 h-80 rounded-full filter blur-3xl opacity-20 animate-float"
-           style={{ background: 'linear-gradient(45deg, #f093fb, #f5576c)', animationDelay: '2s' }}></div>
+    <section id="about" className="section">
+      <div className="container">
+        {/* Section Header */}
+        <div className="section-header">
+          <div className="section-badge">
+            <User className="w-4 h-4" />
+            About
+          </div>
+          {/* SEO: H2 with keyword variation targeting search intent */}
+          <h2 className="section-title">
+            Full Stack Software Engineer
+          </h2>
+          {/* SEO: Description targeting recruiter search intent */}
+          <p className="section-description">
+            Building production-scale applications for startups, SaaS companies, and international teams
+          </p>
+        </div>
 
-      <div className="max-w-6xl w-full z-10 relative">
-        <div
-          className="glass rounded-3xl p-6 sm:p-8 md:p-12 shadow-modern-lg"
-          style={{ 
-            background: 'var(--about-card-bg)',
-            border: '1px solid var(--about-card-border)'
-          }}
-          data-aos="fade-up"
-        >
-          {/* Header section */}
-          <div className="text-center mb-12">
-            <div
-              className="inline-flex items-center px-6 py-3 rounded-full mb-6 glass"
-              style={{ 
-                background: 'var(--about-badge-bg)',
-                border: '1px solid var(--about-badge-border)',
-                color: 'var(--about-badge-text)'
-              }}
-              data-aos="fade-in"
-            >
-              <div className="w-2 h-2 bg-orange-500 rounded-full mr-3 animate-pulse"></div>
-              About Me
-            </div>
-
-            <h2
-              className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6 bg-gradient-to-r from-gray-900 via-gray-700 to-gray-900 bg-clip-text text-transparent"
-              style={{ color: 'var(--about-heading-text)' }}
-              data-aos="fade-in"
-              data-aos-delay="100"
-            >
-              Who Am I?
-            </h2>
-
-            {/* Highlight cards */}
-            <div className="flex flex-wrap justify-center gap-4 mb-8" data-aos="fade-up" data-aos-delay="200">
-              {highlights.map((item, index) => (
-                <div
-                  key={index}
-                  className="flex items-center px-4 py-2 glass rounded-2xl shadow-modern"
-                  style={{ 
-                    background: 'var(--about-card-bg)',
-                    border: '1px solid var(--about-card-border)'
-                  }}
-                >
-                  <item.icon className={`w-5 h-5 mr-2 ${item.color}`} />
-                  <span className="text-sm font-medium" style={{ color: 'var(--about-body-text)' }}>
-                    {item.text}
-                  </span>
-                </div>
-              ))}
+        {/* Main Content */}
+        <div className="content-wrapper">
+          {/* Bio */}
+          <div className="card" style={{ padding: '32px', marginBottom: '32px' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+              <p className="text-body-lg text-[var(--text-secondary)]" style={{ lineHeight: '1.8' }}>
+                I&apos;m <strong>Abubakar Sohail</strong>, a <strong>Senior Full Stack Software Engineer</strong> focused 
+                on building scalable backend systems for SaaS and startup environments.
+              </p>
+              <p className="text-body-lg text-[var(--text-secondary)]" style={{ lineHeight: '1.8' }}>
+                My work centers around <strong>API-first architectures</strong>, <strong>real-time collaboration</strong>, 
+                and <strong>performance optimization</strong> in production systems. At <strong>Devsinc</strong>, I help 
+                architect multi-tenant platforms, reduce latency, and ship features used globally.
+              </p>
+              <p className="text-body-lg text-[var(--text-secondary)]" style={{ lineHeight: '1.8' }}>
+                I work closely with product and engineering teams to turn business requirements into reliable 
+                software—not just working code.
+              </p>
             </div>
           </div>
 
-          {/* Main content with improved layout */}
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            {/* Text content */}
-            <div className="space-y-6" data-aos="fade-right" data-aos-delay="300">
-              <p
-                className="text-sm sm:text-base md:text-lg leading-relaxed"
-                style={{ color: 'var(--about-body-text)' }}
-              >
-                I&apos;m a passionate and endlessly curious{" "}
-                <span className="font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                  Software Engineer
-                </span>
-                , always exploring new technologies and pushing my limits. With around 3
-                years of hands-on experience, I have honed my skills in the{" "}
-                <span className="font-bold bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">MERN stack</span>,{" "}
-                <span className="font-bold bg-gradient-to-r from-red-600 to-pink-600 bg-clip-text text-transparent">Ruby on Rails</span>,
-                and <span className="font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">Next.js</span>
-                —all while constantly seeking out innovative solutions to make the web
-                faster and more engaging.
-              </p>
-
-              <p
-                className="text-sm sm:text-base md:text-lg leading-relaxed"
-                style={{ color: 'var(--about-body-text)' }}
-              >
-                I specialize in building scalable, high-performance web apps,
-                creating{" "}
-                <span className="font-bold text-orange-600">RESTful</span> and{" "}
-                <span className="font-bold text-pink-600">GraphQL</span> APIs,
-                and mastering cloud platforms like{" "}
-                <span className="font-bold text-yellow-600">AWS</span> to deploy
-                seamless, cloud-native experiences.
-              </p>
-
-              <p
-                className="text-sm sm:text-base md:text-lg leading-relaxed"
-                style={{ color: 'var(--about-body-text)' }}
-              >
-                When I&apos;m not coding, you&apos;ll find me diving into the latest tech
-                trends, exploring new frameworks, or building some fun UIs. I&apos;m all
-                about collaboration, creativity, and keeping things fun while
-                delivering quality, secure code.
-              </p>
-            </div>
-
-            {/* Enhanced CTA section */}
-            <div className="text-center" data-aos="fade-left" data-aos-delay="400">
-              <div className="p-8 glass rounded-3xl shadow-modern">
-                <p className="font-bold text-xl mb-6 bg-gradient-to-r from-orange-500 to-red-500 bg-clip-text text-transparent">
-                  Let&apos;s build something amazing together!
-                </p>
-                
-                {/* Social links with enhanced styling */}
-                <div className="flex justify-center gap-6 mb-8">
-                  <a
-                    href={socialLinks.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-4 glass rounded-2xl transition-all hover:scale-110 hover:shadow-glow group"
-                    style={{ color: 'var(--social-icon)' }}
-                  >
-                    <Github size={32} className="group-hover:text-orange-500 transition-colors" />
-                  </a>
-                  <a
-                    href={socialLinks.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-4 glass rounded-2xl transition-all hover:scale-110 hover:shadow-glow group"
-                    style={{ color: 'var(--social-icon)' }}
-                  >
-                    <Linkedin size={32} className="group-hover:text-orange-500 transition-colors" />
-                  </a>
-                  <a
-                    href={socialLinks.gmail}
-                    className="p-4 glass rounded-2xl transition-all hover:scale-110 hover:shadow-glow group"
-                    style={{ color: 'var(--social-icon)' }}
-                  >
-                    <Mail size={32} className="group-hover:text-orange-500 transition-colors" />
-                  </a>
+          {/* Stats */}
+          <div className="stats-grid" style={{ marginBottom: '32px' }}>
+            {stats.map((stat, index) => (
+              <div key={index} className="card text-center hover-lift" style={{ padding: '24px' }}>
+                <div className="text-3xl md:text-4xl font-semibold gradient-text" style={{ marginBottom: '8px' }}>
+                  {stat.value}
                 </div>
+                <div className="text-body text-[var(--text-tertiary)]">
+                  {stat.label}
+                </div>
+              </div>
+            ))}
+          </div>
 
-                {/* Skills preview */}
-                <div className="space-y-4">
-                  <p className="text-sm uppercase tracking-wider opacity-70" 
-                     style={{ color: 'var(--about-body-text)' }}>
-                    Core Technologies
-                  </p>
-                  <div className="flex flex-wrap justify-center gap-2">
-                    {['JavaScript', 'TypeScript', 'React.js', 'Node.js', 'Next.js', 'AWS', 'Ruby on Rails'].map((tech, index) => (
-                      <span
-                        key={tech}
-                        className="px-3 py-1 text-xs font-medium rounded-full glass animate-float"
-                        style={{ 
-                          background: 'var(--about-badge-bg)',
-                          color: 'var(--about-badge-text)',
-                          animationDelay: `${index * 0.1}s`
-                        }}
-                      >
-                        {tech}
-                      </span>
-                    ))}
+          {/* SEO: H3 subheading with keyword variation */}
+          <h3 
+            className="text-title text-[var(--text-primary)] text-center"
+            style={{ marginBottom: '24px' }}
+          >
+            Full Stack Developer for Startups, SaaS & Product Companies
+          </h3>
+
+          {/* Highlights Grid */}
+          <div className="card-grid" style={{ marginBottom: '32px' }}>
+            {highlights.map((item, index) => (
+              <div key={index} className="card hover-lift group" style={{ padding: '24px' }}>
+                <div className="flex items-start" style={{ gap: '16px' }}>
+                  <div 
+                    className="rounded-xl bg-[var(--surface-tertiary)] group-hover:bg-[rgba(99,102,241,0.1)] transition-colors flex-shrink-0"
+                    style={{ padding: '12px' }}
+                  >
+                    <item.icon className="w-5 h-5 text-[var(--accent-primary)]" />
+                  </div>
+                  <div>
+                    <h4 
+                      className="font-semibold text-[var(--text-primary)] text-lg"
+                      style={{ marginBottom: '8px' }}
+                    >
+                      {item.title}
+                    </h4>
+                    <p className="text-body text-[var(--text-tertiary)] leading-relaxed">
+                      {item.description}
+                    </p>
                   </div>
                 </div>
               </div>
+            ))}
+          </div>
+
+          {/* Current Focus */}
+          <div 
+            className="card bg-gradient-to-br from-[var(--surface-elevated)] to-[var(--surface-tertiary)]"
+            style={{ padding: '32px', marginBottom: '32px' }}
+          >
+            <div className="flex items-start" style={{ gap: '16px' }}>
+              <div 
+                className="rounded-xl bg-[rgba(99,102,241,0.1)] flex-shrink-0"
+                style={{ padding: '12px' }}
+              >
+                <Code2 className="w-5 h-5 text-[var(--accent-primary)]" />
+              </div>
+              <div>
+                <h4 
+                  className="font-semibold text-[var(--text-primary)] text-lg"
+                  style={{ marginBottom: '12px' }}
+                >
+                  Current Focus
+                </h4>
+                <p className="text-body-lg text-[var(--text-secondary)]" style={{ lineHeight: '1.8' }}>
+                  Exploring <strong>AI/LLM integrations</strong> in production systems, building <strong>event-driven 
+                  architectures</strong>, and designing <strong>developer tools</strong>. Always seeking challenging 
+                  problems at scale with forward-thinking teams.
+                </p>
+              </div>
             </div>
+          </div>
+
+          {/* SEO: Internal linking with descriptive anchor text */}
+          <div className="text-center">
+            <Link 
+              href="#experience" 
+              className="btn-secondary inline-flex"
+              aria-label="View Abubakar Sohail's professional experience and work history"
+            >
+              View My Experience
+              <ArrowRight className="w-4 h-4" />
+            </Link>
           </div>
         </div>
       </div>

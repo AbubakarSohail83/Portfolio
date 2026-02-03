@@ -1,274 +1,189 @@
 "use client";
 
-import React, { useState } from "react";
-import { FaArrowRight, FaArrowLeft, FaGlobe, FaExternalLinkAlt, FaCode } from "react-icons/fa";
-import { projects } from "@/utils/constants";
+import { useState } from "react";
+import Link from "next/link";
+import { Briefcase, ExternalLink, ChevronRight, Layers, ArrowRight } from "lucide-react";
+import { projects, featuredProjects, type Project } from "@/utils/constants";
 
-const ProjectsSection = () => {
-  const [currentPage, setCurrentPage] = useState(0);
-  const projectsPerPage = 2;
-
-  const totalPages = Math.ceil(projects.length / projectsPerPage);
-  const currentProjects = projects.slice(
-    currentPage * projectsPerPage,
-    (currentPage + 1) * projectsPerPage
-  );
-
-  const nextPage = () => {
-    setCurrentPage((prev) => (prev + 1) % totalPages);
-  };
-
-  const prevPage = () => {
-    setCurrentPage((prev) => (prev - 1 + totalPages) % totalPages);
-  };
-
-  const goToPage = (pageNum: number) => {
-    setCurrentPage(pageNum);
-  };
+const ProjectCard = ({ project }: { project: Project }) => {
+  const [isExpanded, setIsExpanded] = useState(false);
 
   return (
-    <section
-      id="projects"
-      className="min-h-screen py-16 sm:py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden"
-    >
-      {/* Modern gradient background */}
-      <div 
-        className="absolute inset-0"
-        style={{ background: 'var(--projects-bg)' }}
-      />
-      
-      {/* Floating background elements */}
-      <div className="absolute top-20 left-20 w-72 h-72 rounded-full filter blur-3xl opacity-20 animate-float"
-           style={{ background: 'linear-gradient(45deg, #a8edea, #fed6e3)' }}></div>
-      <div className="absolute bottom-20 right-20 w-80 h-80 rounded-full filter blur-3xl opacity-20 animate-float"
-           style={{ background: 'linear-gradient(45deg, #ffecd2, #fcb69f)', animationDelay: '2s' }}></div>
-
-      <div className="max-w-7xl mx-auto relative z-10">
-        {/* Enhanced header - mobile responsive */}
-        <div className="text-center mb-16 sm:mb-20 px-2">
-          <div
-            className="inline-flex items-center px-6 py-3 rounded-full mb-8 glass"
-            style={{ 
-              background: 'var(--projects-badge-bg)',
-              border: '1px solid var(--projects-badge-border)',
-              color: 'var(--projects-badge-text)'
-            }}
-          >
-            <div className="w-2 h-2 bg-teal-500 rounded-full mr-3 animate-pulse"></div>
-            Portfolio
+    <article className="card overflow-hidden hover-lift h-full flex flex-col">
+      {/* Header */}
+      <div className="flex-1" style={{ padding: '28px', paddingBottom: '0' }}>
+        <div className="flex items-start justify-between" style={{ gap: '12px', marginBottom: '16px' }}>
+          <div className="flex-1">
+            <div className="flex items-center" style={{ gap: '12px', marginBottom: '12px' }}>
+              {/* SEO: Project title as H3 for semantic structure */}
+              <h3 className="text-title text-[var(--text-primary)]">
+                {project.title}
+              </h3>
+              {project.link && (
+                <a
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rounded-lg text-[var(--text-tertiary)] hover:text-[var(--accent-primary)] hover:bg-[var(--surface-tertiary)] transition-all"
+                  style={{ padding: '8px' }}
+                  aria-label={`Visit ${project.title} - Software Engineering Project by Abubakar Sohail`}
+                  title={`${project.title} - Live Project`}
+                >
+                  <ExternalLink className="w-4 h-4" />
+                </a>
+              )}
+            </div>
+            <span className="badge">
+              {project.type}
+            </span>
           </div>
+        </div>
 
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6"
-              style={{ color: 'var(--projects-heading-text)' }}>
-            My <span className="bg-gradient-to-r from-neutral-600 to-neutral-800 bg-clip-text text-transparent">Projects</span>
+        {/* Description */}
+        <p 
+          className="text-body text-[var(--text-secondary)] leading-relaxed"
+          style={{ marginBottom: '20px' }}
+        >
+          {project.description}
+        </p>
+
+        {/* Impact highlight */}
+        <div 
+          className="flex items-center rounded-xl bg-[rgba(99,102,241,0.05)] border border-[rgba(99,102,241,0.1)]"
+          style={{ gap: '12px', padding: '14px 18px', marginBottom: '20px' }}
+        >
+          <Layers className="w-5 h-5 text-[var(--accent-primary)] flex-shrink-0" aria-hidden="true" />
+          <span className="text-body text-[var(--accent-primary)] font-medium">
+            {project.impact}
+          </span>
+        </div>
+
+        {/* Details Toggle */}
+        <button
+          onClick={() => setIsExpanded(!isExpanded)}
+          className="flex items-center text-body text-[var(--text-tertiary)] hover:text-[var(--text-primary)] transition-colors"
+          style={{ gap: '8px', marginBottom: '16px' }}
+          aria-expanded={isExpanded}
+        >
+          <ChevronRight
+            className={`w-4 h-4 transition-transform ${isExpanded ? "rotate-90" : ""}`}
+            aria-hidden="true"
+          />
+          {isExpanded ? "Hide details" : "View details"}
+        </button>
+
+        {isExpanded && (
+          <ul className="animate-fade-in" style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginBottom: '20px' }}>
+            {project.details.map((detail, i) => (
+              <li
+                key={i}
+                className="flex items-start text-body text-[var(--text-secondary)] leading-relaxed"
+                style={{ gap: '12px' }}
+              >
+                <span 
+                  className="rounded-full bg-[var(--text-muted)] flex-shrink-0"
+                  style={{ width: '5px', height: '5px', marginTop: '8px' }}
+                  aria-hidden="true"
+                />
+                {detail}
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+
+      {/* Technologies */}
+      <div 
+        className="border-t border-[var(--border-muted)] mt-auto"
+        style={{ padding: '20px 28px' }}
+      >
+        <div className="flex flex-wrap" style={{ gap: '8px' }}>
+          {project.technologies.slice(0, isExpanded ? undefined : 5).map((tech, i) => (
+            <span key={i} className="chip">
+              {tech}
+            </span>
+          ))}
+          {!isExpanded && project.technologies.length > 5 && (
+            <span className="chip">+{project.technologies.length - 5}</span>
+          )}
+        </div>
+      </div>
+    </article>
+  );
+};
+
+const ProjectsSection = () => {
+  const [showAll, setShowAll] = useState(false);
+  const displayedProjects = showAll ? projects : featuredProjects;
+
+  return (
+    <section id="projects" className="section bg-[var(--surface-secondary)]">
+      <div className="container">
+        {/* Section Header */}
+        <div className="section-header">
+          <div className="section-badge">
+            <Briefcase className="w-4 h-4" />
+            Projects
+          </div>
+          {/* SEO: H2 with keyword variation for project/portfolio searches */}
+          <h2 className="section-title">
+            Production-Scale <span className="gradient-text">Applications</span>
           </h2>
-
-          <p className="text-sm sm:text-base max-w-3xl mx-auto opacity-90 px-2"
-             style={{ color: 'var(--projects-heading-text)' }}>
-            A showcase of solutions I&apos;ve built, from concept to deployment
+          {/* SEO: Description targeting tech stack and scale keywords */}
+          <p className="section-description">
+            High-performance web applications built with Node.js, Ruby on Rails, React, and cloud infrastructure
           </p>
         </div>
 
-        {/* Enhanced projects grid - mobile responsive */}
-        <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 sm:gap-8 mb-12 sm:mb-16">
-          {currentProjects.map((project, index) => (
-            <div
-              key={index}
-              className="group glass rounded-3xl overflow-hidden shadow-modern hover:shadow-modern-lg transition-all duration-500 transform hover:-translate-y-2"
-              style={{ 
-                background: 'var(--projects-card-bg)',
-                border: '1px solid var(--projects-card-border)'
-              }}
-            >
-              {/* Enhanced project header */}
-              <div 
-                className="p-8 relative overflow-hidden"
-                style={{ background: 'var(--projects-card-top-bg)' }}
-              >
-                {/* Decorative elements */}
-                <div className="absolute top-0 right-0 w-32 h-32 rounded-full filter blur-2xl opacity-30"
-                     style={{ background: 'rgba(255, 255, 255, 0.2)' }}></div>
-                
-                <div className="relative z-10">
-                  <div className="flex items-start justify-between mb-4">
-                    <div>
-                      <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-2"
-                          style={{ color: 'var(--projects-card-title)' }}>
-                        {project.title}
-                      </h3>
-                      <div className="flex items-center">
-                        <FaCode className="w-4 h-4 mr-2 opacity-80" 
-                               style={{ color: 'var(--projects-card-type)' }} />
-                        <p className="font-medium"
-                           style={{ color: 'var(--projects-card-type)' }}>
-                          {project.type}
-                        </p>
-                      </div>
-                    </div>
-                    
-                    {project.link && (
-                      <a
-                        href={project.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="p-3 glass rounded-2xl hover:scale-110 transition-all duration-300 group"
-                        style={{ color: 'var(--projects-card-title)' }}
-                      >
-                        <FaExternalLinkAlt className="w-5 h-5 group-hover:rotate-12 transition-transform" />
-                      </a>
-                    )}
-                  </div>
-                </div>
-              </div>
-
-              {/* Enhanced project content - mobile responsive */}
-              <div className="p-6 sm:p-8">
-                <p className="text-sm sm:text-base font-medium mb-4 sm:mb-6 leading-relaxed"
-                   style={{ color: 'var(--projects-card-text)' }}>
-                  {project.description}
-                </p>
-
-                {/* Enhanced key contributions */}
-                <div className="mb-6">
-                  <h4 className="font-semibold mb-4 flex items-center"
-                      style={{ color: 'var(--projects-card-title)' }}>
-                    <div className="w-2 h-2 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mr-3"></div>
-                    Key Contributions
-                  </h4>
-                  <ul className="space-y-3">
-                    {project.details.map((detail, i) => (
-                      <li key={i} className="flex items-start">
-                        <div className="w-1.5 h-1.5 bg-gradient-to-r from-teal-500 to-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                        <span className="leading-relaxed" style={{ color: 'var(--projects-card-text)' }}>
-                          {detail}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* Enhanced technology stack */}
-                <div className="mb-6">
-                  <h4 className="font-semibold mb-4 flex items-center"
-                      style={{ color: 'var(--projects-card-title)' }}>
-                    <div className="w-2 h-2 bg-gradient-to-r from-orange-500 to-red-500 rounded-full mr-3"></div>
-                    Tech Stack
-                  </h4>
-                  <div className="flex flex-wrap gap-2">
-                    {project.technologies.map((tech, i) => (
-                      <span
-                        key={i}
-                        className="px-4 py-2 glass rounded-2xl text-sm font-medium transition-all duration-300 hover:scale-105 animate-float"
-                        style={{ 
-                          background: 'var(--projects-chip-bg)',
-                          color: 'var(--projects-chip-text)',
-                          border: '1px solid var(--projects-chip-border)',
-                          animationDelay: `${i * 0.1}s`
-                        }}
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                {project.link && (
-                  <div className="pt-6 border-t border-gray-200 dark:border-gray-700">
-                    <a
-                      href={project.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group inline-flex items-center px-6 py-3 bg-gradient-to-r from-teal-500 to-green-500 text-white rounded-2xl hover:from-teal-600 hover:to-green-600 transition-all shadow-modern hover:shadow-modern-lg font-semibold btn-modern"
-                    >
-                      <FaGlobe className="mr-2 group-hover:rotate-12 transition-transform" />
-                      Visit Website
-                      <FaArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
-                    </a>
-                  </div>
-                )}
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Enhanced pagination */}
-        <div className="flex items-center justify-center space-x-4">
-          <button
-            onClick={prevPage}
-            className="group p-4 glass rounded-2xl transition-all hover:scale-110 btn-modern"
-            style={{ 
-              background: 'var(--projects-pagination-bg)',
-              color: 'var(--projects-pagination-text)',
-              border: '1px solid var(--projects-card-border)'
-            }}
-            aria-label="Previous page"
-          >
-            <FaArrowLeft className="group-hover:-translate-x-1 transition-transform" />
-          </button>
-
-          <div className="flex space-x-2">
-            {Array.from({ length: totalPages }).map((_, index) => (
-              <button
-                key={index}
-                onClick={() => goToPage(index)}
-                className={`w-12 h-12 rounded-2xl flex items-center justify-center font-semibold transition-all btn-modern ${
-                  currentPage === index ? "shadow-modern-lg transform scale-110" : "hover:scale-105"
-                }`}
-                style={{
-                  background: currentPage === index 
-                    ? 'var(--projects-pagination-active-bg)' 
-                    : 'var(--projects-pagination-bg)',
-                  color: currentPage === index 
-                    ? 'var(--projects-pagination-active-text)' 
-                    : 'var(--projects-pagination-text)',
-                  border: '1px solid var(--projects-card-border)'
-                }}
-              >
-                {index + 1}
-              </button>
+        {/* Projects Grid */}
+        <div className="content-wrapper">
+          <div className="grid md:grid-cols-2" style={{ gap: '24px', marginBottom: '40px' }}>
+            {displayedProjects.map((project, index) => (
+              <ProjectCard key={index} project={project} />
             ))}
           </div>
 
-          <button
-            onClick={nextPage}
-            className="group p-4 glass rounded-2xl transition-all hover:scale-110 btn-modern"
-            style={{ 
-              background: 'var(--projects-pagination-bg)',
-              color: 'var(--projects-pagination-text)',
-              border: '1px solid var(--projects-card-border)'
-            }}
-            aria-label="Next page"
-          >
-            <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
-          </button>
-        </div>
-
-        {/* Project stats */}
-        <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
-          {[
-            { number: projects.length.toString(), label: "Projects Completed", icon: "🚀" },
-            { number: "7+", label: "Technologies Used", icon: "⚡" },
-            { number: "100%", label: "Client Satisfaction", icon: "⭐" },
-            { number: "3+", label: "Years Experience", icon: "🎯" }
-          ].map((stat, index) => (
-            <div
-              key={index}
-              className="text-center p-6 glass rounded-2xl shadow-modern hover:shadow-modern-lg transition-all duration-300 animate-float"
-              style={{ 
-                background: 'var(--projects-card-bg)',
-                border: '1px solid var(--projects-card-border)',
-                animationDelay: `${index * 0.2}s`
-              }}
+          {/* Toggle Button */}
+          <div className="text-center" style={{ marginBottom: '48px' }}>
+            <button
+              onClick={() => setShowAll(!showAll)}
+              className="btn-secondary"
+              aria-label={showAll ? "Show featured projects only" : `View all ${projects.length} software engineering projects`}
             >
-              <div className="text-2xl mb-2">{stat.icon}</div>
-              <div className="text-2xl font-bold mb-1 bg-gradient-to-r from-teal-500 to-green-500 bg-clip-text text-transparent">
-                {stat.number}
+              {showAll ? "Show Featured Only" : `View All Projects (${projects.length})`}
+            </button>
+          </div>
+
+          {/* Stats */}
+          <div className="stats-grid" style={{ marginBottom: '32px' }}>
+            {[
+              { value: `${projects.length}`, label: "Projects Delivered" },
+              { value: "10+", label: "Technologies Used" },
+              { value: "5+", label: "Industries Served" },
+              { value: "100%", label: "Client Satisfaction" },
+            ].map((stat, index) => (
+              <div key={index} className="card text-center" style={{ padding: '24px' }}>
+                <div className="text-3xl font-semibold gradient-text" style={{ marginBottom: '8px' }}>
+                  {stat.value}
+                </div>
+                <div className="text-body text-[var(--text-tertiary)]">
+                  {stat.label}
+                </div>
               </div>
-              <div className="text-sm opacity-70" style={{ color: 'var(--projects-card-text)' }}>
-                {stat.label}
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
+
+          {/* SEO: Internal linking with descriptive anchor text */}
+          <div className="text-center">
+            <Link 
+              href="#skills" 
+              className="btn-secondary inline-flex"
+              aria-label="View Abubakar Sohail's technical skills and expertise"
+            >
+              View Technical Skills
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
         </div>
       </div>
     </section>
