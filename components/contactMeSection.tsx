@@ -12,6 +12,8 @@ import {
 } from "lucide-react";
 import { socialLinks } from "@/utils/constants";
 import { ReCaptcha } from "@/widgets/recaptcha";
+import { AnimatedSection } from "@/components/AnimatedSection";
+import { Section3DBackground } from "@/components/three/Section3DBackground";
 
 export const ContactMeSection = () => {
   const [formData, setFormData] = useState({
@@ -73,26 +75,29 @@ export const ContactMeSection = () => {
   };
 
   return (
-    <section id="contact" className="section bg-[var(--surface-secondary)]">
-      <div className="container">
+    <section id="contact" className="section relative overflow-hidden bg-[var(--surface-secondary)]">
+      <Section3DBackground variant="contact" className="z-0 opacity-40" />
+      <div className="container relative z-10">
         {/* Section Header */}
-        <div className="section-header">
-          <div className="section-badge">
-            <Mail className="w-4 h-4" />
-            Contact
-          </div>
-          {/* SEO: H2 with hiring intent keywords */}
-          <h2 className="section-title">
-            Hire a Full Stack <span className="gradient-text">Developer</span>
+        <AnimatedSection mode="single" blur>
+          <div className="section-header">
+            <div className="section-badge">
+              <Mail className="w-4 h-4" />
+              Contact
+            </div>
+            {/* SEO: H2 with hiring intent keywords */}
+            <h2 className="section-title">
+            Let&apos;s Build <span className="gradient-text">Something Great</span>
           </h2>
-          {/* SEO: Description targeting hiring managers and recruiters */}
-          <p className="section-description">
-            Available for remote work with startups, SaaS companies, and international teams. Let&apos;s discuss your project.
-          </p>
-        </div>
+            {/* SEO: Description targeting hiring managers and recruiters */}
+            <p className="section-description">
+              Available for remote work with startups, SaaS companies, and international teams. Let&apos;s discuss your project.
+            </p>
+          </div>
+        </AnimatedSection>
 
         <div className="content-wrapper">
-          <div className="grid lg:grid-cols-5" style={{ gap: '32px' }}>
+          <AnimatedSection mode="stagger" className="grid lg:grid-cols-2" style={{ gap: '32px' }}>
             {/* Contact Form */}
             <div className="lg:col-span-3">
               <div className="card" style={{ padding: '32px' }}>
@@ -198,7 +203,7 @@ export const ContactMeSection = () => {
 
                   {success && (
                     <div 
-                      className="rounded-xl bg-[rgba(16,185,129,0.1)] border border-[rgba(16,185,129,0.2)]"
+                      className="rounded-xl bg-[rgba(16,185,129,0.1)] border border-[rgba(16,185,129,0.2)] animate-feedback-in"
                       style={{ padding: '16px' }}
                       role="alert"
                     >
@@ -210,7 +215,7 @@ export const ContactMeSection = () => {
 
                   {error && (
                     <div 
-                      className="rounded-xl bg-[rgba(239,68,68,0.1)] border border-[rgba(239,68,68,0.2)]"
+                      className="rounded-xl bg-[rgba(239,68,68,0.1)] border border-[rgba(239,68,68,0.2)] animate-feedback-in"
                       style={{ padding: '16px' }}
                       role="alert"
                     >
@@ -247,7 +252,7 @@ export const ContactMeSection = () => {
                       <Github className="w-5 h-5 text-[var(--text-tertiary)]" aria-hidden="true" />
                       <span className="text-body text-[var(--text-secondary)]">GitHub</span>
                     </div>
-                    <ArrowUpRight className="w-5 h-5 text-[var(--text-muted)] group-hover:text-[var(--text-primary)] transition-colors" aria-hidden="true" />
+                    <ArrowUpRight className="w-5 h-5 text-[var(--text-muted)] group-hover:text-[var(--text-primary)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300" aria-hidden="true" />
                   </a>
 
                   <a
@@ -263,7 +268,7 @@ export const ContactMeSection = () => {
                       <Linkedin className="w-5 h-5 text-[var(--text-tertiary)]" aria-hidden="true" />
                       <span className="text-body text-[var(--text-secondary)]">LinkedIn</span>
                     </div>
-                    <ArrowUpRight className="w-5 h-5 text-[var(--text-muted)] group-hover:text-[var(--text-primary)] transition-colors" aria-hidden="true" />
+                    <ArrowUpRight className="w-5 h-5 text-[var(--text-muted)] group-hover:text-[var(--text-primary)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300" aria-hidden="true" />
                   </a>
 
                   <a
@@ -319,7 +324,7 @@ export const ContactMeSection = () => {
                 </a>
               </div>
             </aside>
-          </div>
+          </AnimatedSection>
         </div>
 
         {/* Footer */}

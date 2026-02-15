@@ -4,6 +4,8 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/themeProvider";
 import ThemeToggleCta from "@/widgets/themeToggleCta";
+import PortfolioInsightsPanel from "@/widgets/PortfolioInsightsPanel";
+import { FancyCursor } from "@/widgets/FancyCursor";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -152,8 +154,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning className={inter.variable}>
+    <html lang="en" suppressHydrationWarning className={inter.variable} data-theme="dark">
       <head>
+        {/* Always dark on load so you never see gray */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){document.documentElement.setAttribute('data-theme','dark');try{localStorage.setItem('theme','dark');}catch(e){}})();`,
+          }}
+        />
         {/* SEO: JSON-LD Structured Data injection */}
         <script
           type="application/ld+json"
@@ -167,9 +175,10 @@ export default function RootLayout({
         className={`${inter.className} bg-[var(--background)] text-[var(--foreground)] antialiased`}
       >
         <ThemeProvider
-          attribute="class"
+          attribute="data-theme"
           defaultTheme="dark"
-          enableSystem
+          enableSystem={false}
+          storageKey="theme"
           disableTransitionOnChange
         >
           {/* Subtle noise overlay for texture */}
@@ -177,7 +186,9 @@ export default function RootLayout({
           
           {children}
 
-          <ThemeToggleCta className="fixed bottom-6 right-6 z-50" />
+          <PortfolioInsightsPanel />
+          <ThemeToggleCta className="fixed bottom-5 right-4 z-50 sm:bottom-6 sm:right-6 md:bottom-8 md:right-8" />
+          <FancyCursor />
         </ThemeProvider>
       </body>
     </html>

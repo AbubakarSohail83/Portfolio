@@ -2,7 +2,10 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Code2, Database, Cloud, Wrench, Sparkles, ArrowRight } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Code2, Database, Cloud, Wrench, Sparkles, ArrowRight, type LucideIcon } from "lucide-react";
+import { AnimatedSection } from "@/components/AnimatedSection";
+import { Section3DBackground } from "@/components/three/Section3DBackground";
 
 type Category = "languages" | "backend" | "database" | "devops" | "ai";
 
@@ -10,7 +13,7 @@ interface SkillCategory {
   id: Category;
   label: string;
   shortLabel: string;
-  icon: React.ElementType;
+  icon: LucideIcon;
   description: string;
   skills: string[];
 }
@@ -109,25 +112,29 @@ const SkillsSection = () => {
   const currentCategory = skillCategories.find((c) => c.id === activeCategory);
 
   return (
-    <section id="skills" className="section">
-      <div className="container">
+    <section id="skills" className="section relative overflow-hidden">
+      <Section3DBackground variant="skills" className="z-0 opacity-40" />
+      <div className="container relative z-10">
         {/* Section Header */}
-        <div className="section-header">
-          <div className="section-badge">
-            <Wrench className="w-4 h-4" />
-            Skills
+        <AnimatedSection mode="single" blur>
+          <div className="section-header">
+            <div className="section-badge">
+              <Wrench className="w-4 h-4" />
+              Skills
+            </div>
+            <h2 className="section-title">
+              Technical <span className="gradient-text">Expertise</span>
+            </h2>
+            {/* SEO: Description targeting technology-specific searches */}
+            <p className="section-description">
+              Full stack developer proficient in TypeScript, React, GraphQL, PostgreSQL, Docker, and Kubernetes
+            </p>
           </div>
-          <h2 className="section-title">
-            Technical <span className="gradient-text">Expertise</span>
-          </h2>
-          {/* SEO: Description targeting technology-specific searches */}
-          <p className="section-description">
-            Full stack developer proficient in TypeScript, React, GraphQL, PostgreSQL, Docker, and Kubernetes
-          </p>
-        </div>
+        </AnimatedSection>
 
         <div className="content-wrapper">
           {/* Category Tabs */}
+          <AnimatedSection mode="single">
           <nav 
             className="flex flex-wrap justify-center" 
             style={{ gap: '12px', marginBottom: '40px' }}
@@ -138,31 +145,44 @@ const SkillsSection = () => {
               const isActive = activeCategory === category.id;
 
               return (
-                <button
+                <motion.button
                   key={category.id}
                   onClick={() => setActiveCategory(category.id)}
-                  className={`flex items-center rounded-xl text-body font-medium transition-all ${
+                  className={`flex items-center rounded-xl text-body font-medium transition-colors ${
                     isActive
                       ? "bg-[var(--accent-primary)] text-white"
                       : "bg-[var(--surface-tertiary)] text-[var(--text-secondary)] hover:bg-[var(--surface-elevated)] border border-[var(--border-primary)]"
                   }`}
                   style={{ gap: '10px', padding: '12px 20px' }}
                   aria-pressed={isActive}
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.97 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 25 }}
                 >
                   <Icon className="w-5 h-5" aria-hidden="true" />
                   <span className="hidden sm:inline">{category.label}</span>
                   <span className="sm:hidden">{category.shortLabel}</span>
-                </button>
+                </motion.button>
               );
             })}
           </nav>
+          </AnimatedSection>
 
-          {/* Active Category Content */}
+          {/* Active Category Content - slide on tab change */}
+          <AnimatePresence mode="wait">
           {currentCategory && (
-            <div className="card animate-fade-in" style={{ padding: '32px', marginBottom: '32px' }}>
+            <motion.div
+              key={activeCategory}
+              initial={{ opacity: 0, x: 24, filter: "blur(4px)" }}
+              animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+              exit={{ opacity: 0, x: -24, filter: "blur(4px)" }}
+              transition={{ type: "spring", stiffness: 120, damping: 22 }}
+              className="card card-hover-glow"
+              style={{ padding: '32px', marginBottom: '32px' }}
+            >
               <div className="flex items-center" style={{ gap: '16px', marginBottom: '28px' }}>
                 <div 
-                  className="rounded-xl bg-[rgba(99,102,241,0.1)]"
+                  className="rounded-xl bg-gradient-to-br from-[rgba(99,102,241,0.15)] to-[rgba(139,92,246,0.1)] border border-[rgba(99,102,241,0.15)]"
                   style={{ padding: '14px' }}
                 >
                   <currentCategory.icon className="w-6 h-6 text-[var(--accent-primary)]" aria-hidden="true" />
@@ -186,27 +206,28 @@ const SkillsSection = () => {
                 {currentCategory.skills.map((skill, index) => (
                   <li
                     key={index}
-                    className="rounded-xl bg-[var(--surface-tertiary)] border border-[var(--border-primary)] text-center text-body text-[var(--text-secondary)] hover:border-[var(--accent-primary)] hover:text-[var(--text-primary)] transition-all cursor-default"
+                    className="rounded-xl bg-[var(--surface-tertiary)] border border-[var(--border-primary)] text-center text-body text-[var(--text-secondary)] hover:border-[var(--accent-primary)] hover:text-[var(--text-primary)] hover:shadow-[0_0_20px_-6px_rgba(99,102,241,0.25)] transition-all duration-300 cursor-default"
                     style={{ padding: '14px' }}
                   >
                     {skill}
                   </li>
                 ))}
               </ul>
-            </div>
+            </motion.div>
           )}
+          </AnimatePresence>
 
           {/* Stats */}
           <div className="grid grid-cols-3" style={{ gap: '20px', marginBottom: '32px' }}>
-            <div className="card text-center hover-lift" style={{ padding: '24px' }}>
+            <div className="card stat-card-vibrant card-hover-glow text-center hover-lift" style={{ padding: '24px' }}>
               <div className="text-3xl md:text-4xl font-semibold gradient-text" style={{ marginBottom: '8px' }}>20+</div>
               <div className="text-body text-[var(--text-tertiary)]">Technologies</div>
             </div>
-            <div className="card text-center hover-lift" style={{ padding: '24px' }}>
+            <div className="card stat-card-vibrant card-hover-glow text-center hover-lift" style={{ padding: '24px' }}>
               <div className="text-3xl md:text-4xl font-semibold gradient-text" style={{ marginBottom: '8px' }}>5</div>
               <div className="text-body text-[var(--text-tertiary)]">Domains</div>
             </div>
-            <div className="card text-center hover-lift" style={{ padding: '24px' }}>
+            <div className="card stat-card-vibrant card-hover-glow text-center hover-lift" style={{ padding: '24px' }}>
               <div className="text-3xl md:text-4xl font-semibold gradient-text" style={{ marginBottom: '8px' }}>4+</div>
               <div className="text-body text-[var(--text-tertiary)]">Years</div>
             </div>
@@ -220,8 +241,8 @@ const SkillsSection = () => {
             Backend-Focused Full Stack Engineer
           </h3>
 
-          {/* Expertise Areas */}
-          <div className="card" style={{ padding: '32px', marginBottom: '32px' }}>
+          {/* Expertise Areas - vibrant accent */}
+          <div className="card card-hover-glow" style={{ padding: '32px', marginBottom: '32px' }}>
             <h4 
               className="font-semibold text-[var(--text-primary)] text-xl text-center"
               style={{ marginBottom: '28px' }}
@@ -247,12 +268,7 @@ const SkillsSection = () => {
                   description: "OpenAI and Gemini APIs for sentiment analysis and intelligent automation",
                 },
               ].map((area, index) => (
-                <div key={index} className="flex items-start" style={{ gap: '16px' }}>
-                  <div 
-                    className="rounded-full bg-[var(--accent-primary)] flex-shrink-0"
-                    style={{ width: '10px', height: '10px', marginTop: '6px' }}
-                    aria-hidden="true"
-                  />
+                <div key={index} className="expertise-item-vibrant">
                   <div>
                     <h5 
                       className="font-medium text-[var(--text-primary)] text-lg"
@@ -274,9 +290,9 @@ const SkillsSection = () => {
             <Link 
               href="#contact" 
               className="btn-primary inline-flex"
-              aria-label="Contact Abubakar Sohail to hire a full stack developer"
+              aria-label="Contact Abubakar Sohail to discuss opportunities"
             >
-              Hire Me
+              Let&apos;s Talk
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>

@@ -1,7 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { User, Zap, Globe, Server, Code2, Layers, ArrowRight } from "lucide-react";
+import { User, Zap, Globe, Server, Code2, Layers, ArrowRight, Brush, Brain } from "lucide-react";
+import { AnimatedSection } from "@/components/AnimatedSection";
+import { Section3DBackground } from "@/components/three/Section3DBackground";
 
 const highlights = [
   {
@@ -24,6 +26,16 @@ const highlights = [
     title: "Cloud & DevOps",
     description: "AWS, Docker, Kubernetes, and CI/CD pipelines for reliable deployments",
   },
+  {
+    icon: Brush,
+    title: "UI/UX",
+    description: "Creative user interfaces that enhance user experience and engagement",
+  },
+  {
+    icon: Brain,
+    title: "AI/ML",
+    description: "AI/ML integrations and data analytics",
+  },
 ];
 
 const stats = [
@@ -35,32 +47,36 @@ const stats = [
 
 export const AboutSection = () => {
   return (
-    <section id="about" className="section">
-      <div className="container">
+    <section id="about" className="section relative overflow-hidden">
+      <Section3DBackground variant="about" className="z-0 opacity-40" />
+      <div className="container relative z-10">
         {/* Section Header */}
-        <div className="section-header">
-          <div className="section-badge">
-            <User className="w-4 h-4" />
-            About
+        <AnimatedSection mode="single" blur>
+          <div className="section-header">
+            <div className="section-badge">
+              <User className="w-4 h-4" />
+              About
+            </div>
+            {/* SEO: H2 with keyword variation targeting search intent */}
+            <h2 className="section-title">
+              Full Stack Software Engineer
+            </h2>
+            {/* SEO: Description targeting recruiter search intent */}
+            <p className="section-description">
+              Building production-scale applications for startups, SaaS companies, and international teams
+            </p>
           </div>
-          {/* SEO: H2 with keyword variation targeting search intent */}
-          <h2 className="section-title">
-            Full Stack Software Engineer
-          </h2>
-          {/* SEO: Description targeting recruiter search intent */}
-          <p className="section-description">
-            Building production-scale applications for startups, SaaS companies, and international teams
-          </p>
-        </div>
+        </AnimatedSection>
 
         {/* Main Content */}
         <div className="content-wrapper">
-          {/* Bio */}
-          <div className="card" style={{ padding: '32px', marginBottom: '32px' }}>
+          <AnimatedSection mode="stagger">
+            {/* Bio */}
+            <div className="card" style={{ padding: '32px', marginBottom: '32px' }}>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
               <p className="text-body-lg text-[var(--text-secondary)]" style={{ lineHeight: '1.8' }}>
                 I&apos;m <strong>Abubakar Sohail</strong>, a <strong>Senior Full Stack Software Engineer</strong> focused 
-                on building scalable backend systems for SaaS and startup environments.
+                on building scalable backend systems and creative user interfaces for SaaS and startup environments.
               </p>
               <p className="text-body-lg text-[var(--text-secondary)]" style={{ lineHeight: '1.8' }}>
                 My work centers around <strong>API-first architectures</strong>, <strong>real-time collaboration</strong>, 
@@ -77,7 +93,7 @@ export const AboutSection = () => {
           {/* Stats */}
           <div className="stats-grid" style={{ marginBottom: '32px' }}>
             {stats.map((stat, index) => (
-              <div key={index} className="card text-center hover-lift" style={{ padding: '24px' }}>
+              <div key={index} className="card stat-card-vibrant card-hover-glow text-center hover-lift" style={{ padding: '24px' }}>
                 <div className="text-3xl md:text-4xl font-semibold gradient-text" style={{ marginBottom: '8px' }}>
                   {stat.value}
                 </div>
@@ -123,9 +139,9 @@ export const AboutSection = () => {
             ))}
           </div>
 
-          {/* Current Focus */}
+          {/* Current Focus - vibrant accent */}
           <div 
-            className="card bg-gradient-to-br from-[var(--surface-elevated)] to-[var(--surface-tertiary)]"
+            className="card impact-box-vibrant card-hover-glow bg-gradient-to-br from-[var(--surface-elevated)] to-[var(--surface-tertiary)]"
             style={{ padding: '32px', marginBottom: '32px' }}
           >
             <div className="flex items-start" style={{ gap: '16px' }}>
@@ -152,16 +168,17 @@ export const AboutSection = () => {
           </div>
 
           {/* SEO: Internal linking with descriptive anchor text */}
-          <div className="text-center">
-            <Link 
-              href="#experience" 
-              className="btn-secondary inline-flex"
-              aria-label="View Abubakar Sohail's professional experience and work history"
-            >
-              View My Experience
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
+            <div className="text-center">
+              <Link 
+                href="#experience" 
+                className="btn-secondary inline-flex"
+                aria-label="View Abubakar Sohail's professional experience and work history"
+              >
+                View My Experience
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
+          </AnimatedSection>
         </div>
       </div>
     </section>

@@ -2,14 +2,22 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { motion, AnimatePresence } from "framer-motion";
 import { Briefcase, ExternalLink, ChevronRight, Layers, ArrowRight } from "lucide-react";
 import { projects, featuredProjects, type Project } from "@/utils/constants";
+import { AnimatedSection } from "@/components/AnimatedSection";
+import { Section3DBackground } from "@/components/three/Section3DBackground";
 
 const ProjectCard = ({ project }: { project: Project }) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
-    <article className="card overflow-hidden hover-lift h-full flex flex-col">
+    <motion.article
+      layout
+      className="card card-hover-glow overflow-hidden hover-lift h-full flex flex-col"
+      whileHover={{ y: -8, scale: 1.02 }}
+      transition={{ type: "spring", stiffness: 260, damping: 20 }}
+    >
       {/* Header */}
       <div className="flex-1" style={{ padding: '28px', paddingBottom: '0' }}>
         <div className="flex items-start justify-between" style={{ gap: '12px', marginBottom: '16px' }}>
@@ -47,13 +55,13 @@ const ProjectCard = ({ project }: { project: Project }) => {
           {project.description}
         </p>
 
-        {/* Impact highlight */}
+        {/* Impact highlight - vibrant gradient box */}
         <div 
-          className="flex items-center rounded-xl bg-[rgba(99,102,241,0.05)] border border-[rgba(99,102,241,0.1)]"
+          className="impact-box-vibrant flex items-center rounded-xl transition-shadow duration-300"
           style={{ gap: '12px', padding: '14px 18px', marginBottom: '20px' }}
         >
           <Layers className="w-5 h-5 text-[var(--accent-primary)] flex-shrink-0" aria-hidden="true" />
-          <span className="text-body text-[var(--accent-primary)] font-medium">
+          <span className="text-body font-medium gradient-text">
             {project.impact}
           </span>
         </div>
@@ -72,11 +80,21 @@ const ProjectCard = ({ project }: { project: Project }) => {
           {isExpanded ? "Hide details" : "View details"}
         </button>
 
+        <AnimatePresence>
         {isExpanded && (
-          <ul className="animate-fade-in" style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginBottom: '20px' }}>
+          <motion.ul
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ type: "spring", stiffness: 200, damping: 24 }}
+            style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginBottom: '20px', overflow: 'hidden' }}
+          >
             {project.details.map((detail, i) => (
-              <li
+              <motion.li
                 key={i}
+                initial={{ opacity: 0, x: -8 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: i * 0.04 }}
                 className="flex items-start text-body text-[var(--text-secondary)] leading-relaxed"
                 style={{ gap: '12px' }}
               >
@@ -86,10 +104,11 @@ const ProjectCard = ({ project }: { project: Project }) => {
                   aria-hidden="true"
                 />
                 {detail}
-              </li>
+              </motion.li>
             ))}
-          </ul>
+          </motion.ul>
         )}
+        </AnimatePresence>
       </div>
 
       {/* Technologies */}
@@ -108,7 +127,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
           )}
         </div>
       </div>
-    </article>
+    </motion.article>
   );
 };
 
@@ -117,31 +136,34 @@ const ProjectsSection = () => {
   const displayedProjects = showAll ? projects : featuredProjects;
 
   return (
-    <section id="projects" className="section bg-[var(--surface-secondary)]">
-      <div className="container">
+    <section id="projects" className="section relative overflow-hidden bg-[var(--surface-secondary)]">
+      <Section3DBackground variant="projects" className="z-0 opacity-40" />
+      <div className="container relative z-10">
         {/* Section Header */}
-        <div className="section-header">
-          <div className="section-badge">
-            <Briefcase className="w-4 h-4" />
-            Projects
+        <AnimatedSection mode="single" blur>
+          <div className="section-header">
+            <div className="section-badge">
+              <Briefcase className="w-4 h-4" />
+              Projects
+            </div>
+            {/* SEO: H2 with keyword variation for project/portfolio searches */}
+            <h2 className="section-title">
+              Production-Scale <span className="gradient-text">Applications</span>
+            </h2>
+            {/* SEO: Description targeting tech stack and scale keywords */}
+            <p className="section-description">
+              High-performance web applications built with Node.js, Ruby on Rails, React, and cloud infrastructure
+            </p>
           </div>
-          {/* SEO: H2 with keyword variation for project/portfolio searches */}
-          <h2 className="section-title">
-            Production-Scale <span className="gradient-text">Applications</span>
-          </h2>
-          {/* SEO: Description targeting tech stack and scale keywords */}
-          <p className="section-description">
-            High-performance web applications built with Node.js, Ruby on Rails, React, and cloud infrastructure
-          </p>
-        </div>
+        </AnimatedSection>
 
-        {/* Projects Grid */}
+        {/* Projects Grid - stagger entrance */}
         <div className="content-wrapper">
-          <div className="grid md:grid-cols-2" style={{ gap: '24px', marginBottom: '40px' }}>
+          <AnimatedSection mode="stagger" className="grid md:grid-cols-2" style={{ gap: '24px', marginBottom: '40px' }}>
             {displayedProjects.map((project, index) => (
               <ProjectCard key={index} project={project} />
             ))}
-          </div>
+          </AnimatedSection>
 
           {/* Toggle Button */}
           <div className="text-center" style={{ marginBottom: '48px' }}>
@@ -162,7 +184,7 @@ const ProjectsSection = () => {
               { value: "5+", label: "Industries Served" },
               { value: "100%", label: "Client Satisfaction" },
             ].map((stat, index) => (
-              <div key={index} className="card text-center" style={{ padding: '24px' }}>
+              <div key={index} className="card stat-card-vibrant card-hover-glow text-center hover-lift" style={{ padding: '24px' }}>
                 <div className="text-3xl font-semibold gradient-text" style={{ marginBottom: '8px' }}>
                   {stat.value}
                 </div>
