@@ -41,13 +41,13 @@ export const HeroSection = () => {
       <div className="absolute inset-0 bg-[var(--background)]" />
 
       {/* Three.js - theme-aligned, subtle */}
-      <Section3DBackground variant="hero" className="z-0 opacity-[0.55]" />
+      <Section3DBackground variant="hero" className="z-0 opacity-40 dark:opacity-[0.16]" />
 
       {/* Animated gradient mesh */}
-      <div className="absolute inset-0 hero-mesh" aria-hidden="true" />
+      <div className="absolute inset-0 hero-mesh dark:opacity-[0.55]" aria-hidden="true" />
       
       {/* Grid pattern overlay - very subtle in dark (no gray) */}
-      <div className="absolute inset-0 grid-bg opacity-30 dark:opacity-[0.06]" />
+      <div className="absolute inset-0 grid-bg opacity-30 dark:opacity-[0.04]" />
       
       {/* Gradient orbs - theme colors, gentle pulse */}
       <motion.div

@@ -62,7 +62,7 @@ const experiences: Experience[] = [
 export const ExperienceSection = () => {
   return (
     <section id="experience" className="section relative overflow-hidden bg-[var(--surface-secondary)]">
-      <Section3DBackground variant="experience" className="z-0 opacity-40" />
+      <Section3DBackground variant="experience" className="z-0 opacity-40 dark:opacity-[0.16]" />
       <div className="container relative z-10">
         {/* Section Header */}
         <AnimatedSection mode="single" blur>

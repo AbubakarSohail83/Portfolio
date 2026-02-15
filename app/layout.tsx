@@ -154,12 +154,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning className={inter.variable} data-theme="dark">
+    <html lang="en" suppressHydrationWarning className={inter.variable} data-theme="light">
       <head>
-        {/* Always dark on load so you never see gray */}
+        {/* Respect saved theme on first paint; fallback to light */}
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){document.documentElement.setAttribute('data-theme','dark');try{localStorage.setItem('theme','dark');}catch(e){}})();`,
+            __html: `(function(){try{var t=localStorage.getItem('theme');document.documentElement.setAttribute('data-theme',t==='dark'?'dark':'light');}catch(e){document.documentElement.setAttribute('data-theme','light');}})();`,
           }}
         />
         {/* SEO: JSON-LD Structured Data injection */}
@@ -176,7 +176,7 @@ export default function RootLayout({
       >
         <ThemeProvider
           attribute="data-theme"
-          defaultTheme="dark"
+          defaultTheme="light"
           enableSystem={false}
           storageKey="theme"
           disableTransitionOnChange

@@ -2,7 +2,8 @@
 
 import { useState, useEffect, useRef, useCallback } from "react";
 
-const SMOOTH = 0.12;
+const BASE_SMOOTH = 0.2;
+const FAST_SMOOTH = 0.32;
 
 export function FancyCursor() {
   const [active, setActive] = useState(false);
@@ -50,8 +51,10 @@ export function FancyCursor() {
     const tick = () => {
       const dx = pos.current.x - render.current.x;
       const dy = pos.current.y - render.current.y;
-      render.current.x += dx * SMOOTH;
-      render.current.y += dy * SMOOTH;
+      const dist = Math.hypot(dx, dy);
+      const smooth = dist > 90 ? FAST_SMOOTH : BASE_SMOOTH;
+      render.current.x += dx * smooth;
+      render.current.y += dy * smooth;
       if (dotRef.current) {
         dotRef.current.style.transform = `translate(${render.current.x}px, ${render.current.y}px)`;
       }

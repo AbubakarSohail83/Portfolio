@@ -20,8 +20,14 @@ function SceneContent({ variant }: { variant: Scene3DVariant }) {
   if (variant === "hero") {
     return (
       <>
-        <ParticleField count={900} radius={12} color={c.primary} size={0.02} opacity={0.5} />
-        <WireframeTorus radius={2.2} tube={0.3} color={c.primary} opacity={0.4} />
+        <ParticleField
+          count={520}
+          radius={11}
+          color={c.primary}
+          size={0.016}
+          opacity={0.2}
+        />
+        <WireframeTorus radius={2.2} tube={0.3} color={c.primary} opacity={0.22} />
       </>
     );
   }

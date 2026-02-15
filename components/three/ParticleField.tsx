@@ -10,6 +10,7 @@ interface ParticleFieldProps {
   color?: string;
   size?: number;
   opacity?: number;
+  blending?: THREE.Blending;
 }
 
 export function ParticleField({
@@ -18,6 +19,7 @@ export function ParticleField({
   color = "#38bdf8",
   size = 0.02,
   opacity = 0.6,
+  blending = THREE.AdditiveBlending,
 }: ParticleFieldProps) {
   const points = useRef<THREE.Points>(null);
   const [positions, speeds] = useMemo(() => {
@@ -62,7 +64,7 @@ export function ParticleField({
         opacity={opacity}
         sizeAttenuation
         depthWrite={false}
-        blending={THREE.AdditiveBlending}
+        blending={blending}
       />
     </points>
   );

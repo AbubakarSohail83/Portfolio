@@ -48,7 +48,7 @@ const stats = [
 export const AboutSection = () => {
   return (
     <section id="about" className="section relative overflow-hidden">
-      <Section3DBackground variant="about" className="z-0 opacity-40" />
+      <Section3DBackground variant="about" className="z-0 opacity-40 dark:opacity-[0.16]" />
       <div className="container relative z-10">
         {/* Section Header */}
         <AnimatedSection mode="single" blur>

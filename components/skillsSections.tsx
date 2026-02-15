@@ -113,7 +113,7 @@ const SkillsSection = () => {
 
   return (
     <section id="skills" className="section relative overflow-hidden">
-      <Section3DBackground variant="skills" className="z-0 opacity-40" />
+      <Section3DBackground variant="skills" className="z-0 opacity-40 dark:opacity-[0.16]" />
       <div className="container relative z-10">
         {/* Section Header */}
         <AnimatedSection mode="single" blur>
