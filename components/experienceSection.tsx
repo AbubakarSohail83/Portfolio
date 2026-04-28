@@ -19,26 +19,30 @@ const experiences: Experience[] = [
   {
     company: "Devsinc",
     role: "Senior Software Engineer",
-    period: "2023 – Present",
-    location: "Hybrid | Lahore, Pakistan",
+    period: "2023 - Present",
+    location: "Hybrid | Able to work across timezones",
     type: "full-time",
     achievements: [
       "Architected backend systems for multi-tenant platforms serving thousands of international users",
-      "Built high-performance REST and GraphQL APIs with 20-30% response time improvements",
+      "Built high-performance REST and GraphQL APIs with NestJS, Express.js, and Apollo, improving response times by 20-30%",
       "Integrated AI/LLM workflows and automation pipelines for data-driven features",
-      "Implemented WebSocket-based real-time features supporting hundreds of concurrent connections",
-      "Optimized database queries and Redis caching strategies for measurable performance gains",
+      "Built Python/FastAPI microservices for ETL pipelines that ingest, transform, and process external data sources",
+      "Troubleshot production issues across application, database, and infrastructure layers to improve reliability",
+      "Deployed and operated services with Docker, AWS, ArgoCD, and CI/CD pipelines in Linux environments",
+      "Mentored junior engineers and led a team of junior developers through feature delivery, code reviews, and debugging sessions",
+      "Participated in and led training sessions for new hires, helping them ramp up on engineering workflows and project standards",
     ],
-    technologies: ["Node.js", "TypeScript", "Python", "FastAPI", "Ruby on Rails", "PostgreSQL", "Redis", "AWS", "Docker", "GraphQL"],
+    technologies: ["Node.js", "TypeScript", "NestJS", "Express.js", "Python", "FastAPI", "Ruby on Rails", "PostgreSQL", "AWS", "Docker", "ArgoCD", "GraphQL"],
   },
   {
     company: "Technocares",
     role: "Software Engineer",
     period: "2023",
-    location: "Onsite | Lahore, Pakistan",
+    location: "Onsite",
     type: "full-time",
     achievements: [
       "Developed full-stack web applications using Node.js, React.js, AngularJS, and C#",
+      "Assisted in debugging and stabilizing production systems by reproducing issues and implementing fixes",
       "Optimized frontend performance, reducing UI loading times by 20%",
       "Contributed to backend API development and data flow architecture improvements",
     ],
@@ -47,8 +51,8 @@ const experiences: Experience[] = [
   {
     company: "Fiverr",
     role: "Freelance Software Engineer",
-    period: "2021 – 2022",
-    location: "Remote | United States",
+    period: "2020 - 2022",
+    location: "Remote",
     type: "freelance",
     achievements: [
       "Delivered 20+ full-stack applications using Node.js, React.js, and Python",
@@ -112,6 +116,8 @@ export const ExperienceSection = () => {
                   style={{ gap: '8px' }}
                 >
                   <div className="flex items-center" style={{ gap: '8px' }}>
+                    <Calendar className="w-4 h-4" />
+                    {exp.period}
                   </div>
                   <div className="flex items-center" style={{ gap: '8px' }}>
                     <MapPin className="w-4 h-4" />

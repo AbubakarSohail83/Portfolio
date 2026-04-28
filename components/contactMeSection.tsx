@@ -91,7 +91,7 @@ export const ContactMeSection = () => {
           </h2>
             {/* SEO: Description targeting hiring managers and recruiters */}
             <p className="section-description">
-              Available for remote work with startups, SaaS companies, and international teams. Let&apos;s discuss your project.
+              Available from Glasgow for remote and timezone-friendly engineering work with startups, SaaS companies, and international teams.
             </p>
           </div>
         </AnimatedSection>
@@ -300,7 +300,7 @@ export const ContactMeSection = () => {
                 <div className="flex items-start" style={{ gap: '14px' }}>
                   <MapPin className="w-5 h-5 text-[var(--text-tertiary)] flex-shrink-0" style={{ marginTop: '2px' }} aria-hidden="true" />
                   <p className="text-body text-[var(--text-secondary)]" style={{ lineHeight: '1.7' }}>
-                    Open to remote roles globally and on-site opportunities in Pakistan and the UK. No visa sponsorship required for UK engagements.
+                    Based in Glasgow, United Kingdom. Open to remote roles globally and UK opportunities. No sponsorship required.
                   </p>
                 </div>
               </div>
@@ -334,7 +334,7 @@ export const ContactMeSection = () => {
             style={{ gap: '16px' }}
           >
             <p>&copy; {new Date().getFullYear()} Abubakar Sohail. All rights reserved.</p>
-            <p>Senior Full Stack Software Engineer</p>
+            <p>Senior Software Engineer</p>
           </div>
         </footer>
       </div>

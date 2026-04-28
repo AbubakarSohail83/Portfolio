@@ -179,7 +179,7 @@ const ProjectsSection = () => {
           {/* Stats */}
           <div className="stats-grid" style={{ marginBottom: '32px' }}>
             {[
-              { value: `${projects.length}`, label: "Projects Delivered" },
+              { value: "20+", label: "Projects Delivered" },
               { value: "10+", label: "Technologies Used" },
               { value: "5+", label: "Industries Served" },
               { value: "100%", label: "Client Satisfaction" },

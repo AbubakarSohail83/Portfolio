@@ -24,7 +24,7 @@ const highlights = [
   {
     icon: Globe,
     title: "Cloud & DevOps",
-    description: "AWS, Docker, Kubernetes, and CI/CD pipelines for reliable deployments",
+    description: "AWS, Docker, ArgoCD, Datadog, and CI/CD pipelines for reliable deployments",
   },
   {
     icon: Brush,
@@ -34,12 +34,12 @@ const highlights = [
   {
     icon: Brain,
     title: "AI/ML",
-    description: "AI/ML integrations and data analytics",
+    description: "RAG pipelines, LLM integrations, automation workflows, and analytics",
   },
 ];
 
 const stats = [
-  { value: "4+", label: "Years Experience" },
+  { value: "4", label: "Years Experience" },
   { value: "20+", label: "Projects Delivered" },
   { value: "1000s", label: "Users Served" },
   { value: "30%", label: "Avg. Perf Gains" },
@@ -59,11 +59,11 @@ export const AboutSection = () => {
             </div>
             {/* SEO: H2 with keyword variation targeting search intent */}
             <h2 className="section-title">
-              Full Stack Software Engineer
+              Backend-Focused Full Stack Engineer
             </h2>
             {/* SEO: Description targeting recruiter search intent */}
             <p className="section-description">
-              Building production-scale applications for startups, SaaS companies, and international teams
+              Building production-scale systems for startups, SaaS companies, marketplaces, and international teams
             </p>
           </div>
         </AnimatedSection>
@@ -75,17 +75,16 @@ export const AboutSection = () => {
             <div className="card" style={{ padding: '32px', marginBottom: '32px' }}>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
               <p className="text-body-lg text-[var(--text-secondary)]" style={{ lineHeight: '1.8' }}>
-                I&apos;m <strong>Abubakar Sohail</strong>, a <strong>Senior Full Stack Software Engineer</strong> focused 
-                on building scalable backend systems and creative user interfaces for SaaS and startup environments.
+                I&apos;m <strong>Abubakar Sohail</strong>, a <strong>Senior Software Engineer</strong>, focused 
+                on backend-heavy full stack products for SaaS, marketplace, recruitment, HR, and automotive platforms.
               </p>
               <p className="text-body-lg text-[var(--text-secondary)]" style={{ lineHeight: '1.8' }}>
-                My work centers around <strong>API-first architectures</strong>, <strong>real-time collaboration</strong>, 
-                and <strong>performance optimization</strong> in production systems. At <strong>Devsinc</strong>, I help 
-                architect multi-tenant platforms, reduce latency, and ship features used globally.
+                My work centers around <strong>API-first architectures</strong>, <strong>GraphQL and REST services</strong>, 
+                <strong>microservices</strong>, and <strong>performance optimization</strong> in production systems. At <strong>Devsinc</strong>, I help 
+                architect multi-tenant platforms, reduce latency, and ship features used by international clients.
               </p>
               <p className="text-body-lg text-[var(--text-secondary)]" style={{ lineHeight: '1.8' }}>
-                I work closely with product and engineering teams to turn business requirements into reliable 
-                software—not just working code.
+                I also integrate <strong>AI/LLM workflows</strong>, third-party APIs, and Python/FastAPI data pipelines while keeping systems observable, deployable, and supportable.
               </p>
             </div>
           </div>
@@ -159,9 +158,7 @@ export const AboutSection = () => {
                   Current Focus
                 </h4>
                 <p className="text-body-lg text-[var(--text-secondary)]" style={{ lineHeight: '1.8' }}>
-                  Exploring <strong>AI/LLM integrations</strong> in production systems, building <strong>event-driven 
-                  architectures</strong>, and designing <strong>developer tools</strong>. Always seeking challenging 
-                  problems at scale with forward-thinking teams.
+                  Building <strong>production AI/LLM integrations</strong>, <strong>RAG pipelines</strong>, backend automation, and distributed systems that can be monitored, debugged, and evolved by real product teams.
                 </p>
               </div>
             </div>

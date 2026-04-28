@@ -64,6 +64,21 @@ export const projects: Project[] = [
     featured: true,
   },
   {
+    title: "VU Custom",
+    description:
+      "A custom product personalization platform with real-time 2D and 3D previews plus fulfillment-ready production automation.",
+    impact: "Turned personalized designs into production-ready order data",
+    details: [
+      "Built the personalization workflow with Ruby on Rails and React for custom product configuration",
+      "Implemented real-time 2D and 3D previews so buyers could inspect designs before checkout",
+      "Created order automation flows that translated customer designs into fulfillment data",
+      "Improved operational handoff between ecommerce orders and production teams",
+    ],
+    technologies: ["Ruby on Rails", "React", "JavaScript", "3D Preview", "Order Automation", "PostgreSQL"],
+    type: "Client Project",
+    featured: true,
+  },
+  {
     title: "MapleHR",
     description:
       "A comprehensive multi-tenant HR management platform handling employee management, organizational hierarchies, claims, tickets, and leave requests.",
@@ -140,3 +155,48 @@ export const projects: Project[] = [
 ];
 
 export const featuredProjects = projects.filter((p) => p.featured);
+
+export type BlogCategory = "Engineering" | "AI" | "Career" | "Architecture";
+
+export interface BlogPost {
+  id: string;
+  title: string;
+  excerpt: string;
+  category: BlogCategory;
+  readTime: string;
+  publishedAt: string;
+  tags: string[];
+}
+
+export const starterBlogPosts: BlogPost[] = [
+  {
+    id: "backend-heavy-full-stack",
+    title: "What Backend-Heavy Full Stack Engineering Means in Practice",
+    excerpt:
+      "A practical look at balancing API design, database performance, deployment reliability, and the frontend workflows that depend on them.",
+    category: "Engineering",
+    readTime: "5 min read",
+    publishedAt: "2026-04-27",
+    tags: ["Node.js", "Rails", "APIs"],
+  },
+  {
+    id: "llm-features-production",
+    title: "Shipping LLM Features Without Treating Them Like Demos",
+    excerpt:
+      "Notes on moving AI workflows into production with clear boundaries, observability, retry behavior, and human-readable outputs.",
+    category: "AI",
+    readTime: "6 min read",
+    publishedAt: "2026-04-19",
+    tags: ["OpenAI", "Gemini", "RAG"],
+  },
+  {
+    id: "multi-tenant-saas-lessons",
+    title: "Lessons From Multi-Tenant SaaS Platforms",
+    excerpt:
+      "Patterns that repeatedly matter: tenant isolation, resolver design, cache discipline, background work, and supportable debugging.",
+    category: "Architecture",
+    readTime: "7 min read",
+    publishedAt: "2026-04-11",
+    tags: ["SaaS", "GraphQL", "PostgreSQL"],
+  },
+];

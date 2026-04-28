@@ -33,8 +33,10 @@ const skillCategories: SkillCategory[] = [
       "React.js",
       "Next.js",
       "Redux",
+      "Material UI",
+      "Inertia.js",
       "Tailwind CSS",
-      "HTML5/CSS3",
+      "React Query",
     ],
   },
   {
@@ -52,6 +54,7 @@ const skillCategories: SkillCategory[] = [
       "GraphQL",
       "REST APIs",
       "WebSockets",
+      "Socket.io",
       "Microservices",
     ],
   },
@@ -79,11 +82,13 @@ const skillCategories: SkillCategory[] = [
     description: "Infrastructure and deployment",
     skills: [
       "AWS (EC2, S3, Lambda, RDS)",
+      "CloudFront",
       "Docker",
-      "Kubernetes",
+      "ElasticSearch",
       "CI/CD",
       "ArgoCD",
       "Nginx",
+      "Datadog",
       "Linux/Unix",
       "Git",
     ],
@@ -97,11 +102,15 @@ const skillCategories: SkillCategory[] = [
     skills: [
       "OpenAI API",
       "Gemini API",
+      "Claude",
+      "RAG Pipelines",
       "LLM Integration",
       "Sentiment Analysis",
+      "MCP Servers",
+      "HubSpot",
+      "Beehiiv",
+      "Stripe",
       "Looker Studio",
-      "Datadog",
-      "Sentry",
     ],
   },
 ];
@@ -127,7 +136,7 @@ const SkillsSection = () => {
             </h2>
             {/* SEO: Description targeting technology-specific searches */}
             <p className="section-description">
-              Full stack developer proficient in TypeScript, React, GraphQL, PostgreSQL, Docker, and Kubernetes
+              Full stack developer proficient in TypeScript, React, GraphQL, PostgreSQL, AWS, Docker, ArgoCD, and AI integrations
             </p>
           </div>
         </AnimatedSection>
@@ -218,7 +227,7 @@ const SkillsSection = () => {
           </AnimatePresence>
 
           {/* Stats */}
-          <div className="grid grid-cols-3" style={{ gap: '20px', marginBottom: '32px' }}>
+          <div className="grid sm:grid-cols-3" style={{ gap: '20px', marginBottom: '32px' }}>
             <div className="card stat-card-vibrant card-hover-glow text-center hover-lift" style={{ padding: '24px' }}>
               <div className="text-3xl md:text-4xl font-semibold gradient-text" style={{ marginBottom: '8px' }}>20+</div>
               <div className="text-body text-[var(--text-tertiary)]">Technologies</div>
@@ -228,7 +237,7 @@ const SkillsSection = () => {
               <div className="text-body text-[var(--text-tertiary)]">Domains</div>
             </div>
             <div className="card stat-card-vibrant card-hover-glow text-center hover-lift" style={{ padding: '24px' }}>
-              <div className="text-3xl md:text-4xl font-semibold gradient-text" style={{ marginBottom: '8px' }}>4+</div>
+              <div className="text-3xl md:text-4xl font-semibold gradient-text" style={{ marginBottom: '8px' }}>4</div>
               <div className="text-body text-[var(--text-tertiary)]">Years</div>
             </div>
           </div>

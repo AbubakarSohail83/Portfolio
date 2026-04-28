@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion, type Variants } from "framer-motion";
-import { ArrowRight, Github, Linkedin, Mail } from "lucide-react";
+import { ArrowRight, Download, Github, Linkedin, Mail } from "lucide-react";
 import { socialLinks } from "@/utils/constants";
 import { Globe } from "@/components/Globe";
 import { Section3DBackground } from "@/components/three/Section3DBackground";
@@ -109,7 +109,7 @@ export const HeroSection = () => {
               >
                 <span className="status-indicator pulse" />
                 <span className="text-small text-[var(--text-secondary)]">
-                  Available for opportunities
+                  LATAM | UK(No Sponsorship Required) | USA
                 </span>
               </motion.div>
 
@@ -128,7 +128,7 @@ export const HeroSection = () => {
                 className="text-headline gradient-text-animate"
                 style={{ marginBottom: '32px' }}
               >
-                Senior Full Stack Software Engineer
+                Senior Software Engineer
               </motion.p>
 
               {/* Value proposition */}
@@ -137,13 +137,13 @@ export const HeroSection = () => {
                 className="text-body-lg text-[var(--text-secondary)] max-w-xl mx-auto lg:mx-0 leading-relaxed"
                 style={{ marginBottom: '24px' }}
               >
-                I build <strong>scalable, backend-heavy systems</strong> that power products used by thousands. 
+                I build <strong>scalable, backend-heavy systems</strong> that power multi-tenant products used by thousands. 
                 Specializing in{" "}
                 <span className="text-[var(--text-primary)] font-medium">Node.js</span>,{" "}
-                <span className="text-[var(--text-primary)] font-medium">Python</span>,{" "}
-                <span className="text-[var(--text-primary)] font-medium">ROR</span>,{" "}
+                <span className="text-[var(--text-primary)] font-medium">TypeScript</span>,{" "}
+                <span className="text-[var(--text-primary)] font-medium">Ruby on Rails</span>,{" "}
                 <span className="text-[var(--text-primary)] font-medium">React</span>, and{" "}
-                <span className="text-[var(--text-primary)] font-medium">cloud infrastructure (AWS)</span>.
+                <span className="text-[var(--text-primary)] font-medium">AWS</span>.
               </motion.p>
 
               <motion.p 
@@ -151,8 +151,26 @@ export const HeroSection = () => {
                 className="text-body text-[var(--text-muted)] mx-auto lg:mx-0"
                 style={{ marginBottom: '40px' }}
               >
-                Collaborating with distributed teams worldwide
+                4 years of experience across SaaS, marketplaces, AI workflows, and distributed systems.
               </motion.p>
+
+              <motion.div
+                variants={heroItem}
+                className="flex flex-wrap justify-center lg:justify-start"
+                style={{ gap: "10px", marginBottom: "32px" }}
+                aria-label="Professional highlights"
+              >
+                {[
+                  "REST + GraphQL APIs",
+                  "Microservices",
+                  "RAG + LLM integrations",
+                  "AWS + Docker + ArgoCD",
+                ].map((item) => (
+                  <span key={item} className="hero-signal">
+                    {item}
+                  </span>
+                ))}
+              </motion.div>
 
               {/* CTA Buttons */}
               <motion.div 
@@ -177,6 +195,16 @@ export const HeroSection = () => {
                 >
                   Let&apos;s Talk
                 </Link>
+                <a
+                  href="/as.pdf"
+                  className="btn-secondary"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Download Abubakar Sohail resume PDF"
+                >
+                  <Download className="w-4 h-4" />
+                  Resume
+                </a>
               </motion.div>
 
               {/* Social links */}
@@ -255,10 +283,10 @@ export const HeroSection = () => {
             style={{ marginTop: '64px', textAlign: 'center' }}
           >
             <p className="text-small text-[var(--text-muted)]" style={{ marginBottom: '16px' }}>
-              Trusted by startups and enterprises worldwide
+              Available across timezones for product teams in the UK, Europe, and North America
             </p>
             <div className="flex flex-wrap justify-center items-center" style={{ gap: '32px' }}>
-              {['SaaS Companies', 'Startups', 'International Teams', 'Remote-First Companies'].map((item, i) => (
+              {['Backend Platforms', 'SaaS Companies', 'AI Workflows', 'Remote-First Teams'].map((item, i) => (
                 <motion.span
                   key={item}
                   initial={{ opacity: 0, y: 12 }}
@@ -285,7 +313,7 @@ export const HeroSection = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.4, duration: 0.5 }}
-          className="absolute bottom-12 left-1/2 -translate-x-1/2 hidden md:block"
+          className="absolute bottom-6 left-1/2 -translate-x-1/2 hidden xl:block"
         >
           <motion.div
             className="flex flex-col items-center text-[var(--text-muted)]"

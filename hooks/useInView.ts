@@ -15,7 +15,7 @@ export function useInView(options: UseInViewOptions = {}) {
     triggerOnce = true,
   } = options;
   const ref = useRef<HTMLDivElement | null>(null);
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
     const el = ref.current;
