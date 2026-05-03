@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeProvider } from "@/components/themeProvider";
 import ThemeToggleCta from "@/widgets/themeToggleCta";
-import PortfolioInsightsPanel from "@/widgets/PortfolioInsightsPanel";
 import { FancyCursor } from "@/widgets/FancyCursor";
 
 /* SEO: Base URL for canonical and OG tags */
@@ -238,7 +237,6 @@ export default function RootLayout({
           
           {children}
 
-          <PortfolioInsightsPanel />
           <ThemeToggleCta className="fixed bottom-5 right-4 z-50 sm:bottom-6 sm:right-6 md:bottom-8 md:right-8" />
           <FancyCursor />
         </ThemeProvider>

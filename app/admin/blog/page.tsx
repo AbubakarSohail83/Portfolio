@@ -209,6 +209,15 @@ export default function AdminBlogPage() {
                 </button>
               </form>
 
+              <div style={{ marginTop: "16px" }}>
+                <Link
+                  href="/admin/forgot-password"
+                  className="text-body text-[var(--text-tertiary)] hover:text-[var(--text-primary)] transition-colors"
+                >
+                  Forgot password?
+                </Link>
+              </div>
+
               {message && (
                 <p className="text-body text-[var(--error)]" style={{ marginTop: "16px" }}>
                   {message}
