@@ -91,7 +91,6 @@ export function Scene3DCanvas({ variant }: { variant: Scene3DVariant }) {
         dpr={[1, 1.25]}
         gl={{ alpha: true, antialias: true, powerPreference: "low-power" }}
       >
-        <color attach="background" args={["transparent"]} />
         <SceneContent variant={variant} />
       </Canvas>
     </div>

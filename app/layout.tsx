@@ -1,17 +1,10 @@
 import type React from "react";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/themeProvider";
 import ThemeToggleCta from "@/widgets/themeToggleCta";
 import PortfolioInsightsPanel from "@/widgets/PortfolioInsightsPanel";
 import { FancyCursor } from "@/widgets/FancyCursor";
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-});
 
 /* SEO: Base URL for canonical and OG tags */
 const siteUrl = "https://abubakarsohail.online";
@@ -216,12 +209,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning className={inter.variable} data-theme="light">
+    <html lang="en" suppressHydrationWarning data-theme="dark">
       <head>
-        {/* Respect saved theme on first paint; fallback to light */}
+        {/* Respect saved theme on first paint; fallback to dark */}
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{var t=localStorage.getItem('theme');document.documentElement.setAttribute('data-theme',t==='dark'?'dark':'light');}catch(e){document.documentElement.setAttribute('data-theme','light');}})();`,
+            __html: `(function(){try{var t=localStorage.getItem('theme');document.documentElement.setAttribute('data-theme',t==='light'?'light':'dark');}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();`,
           }}
         />
         {/* SEO: JSON-LD Structured Data injection */}
@@ -229,16 +222,13 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        {/* SEO: Preconnect to external resources for performance */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
       <body
-        className={`${inter.className} bg-[var(--background)] text-[var(--foreground)] antialiased`}
+        className="bg-[var(--background)] text-[var(--foreground)] antialiased"
       >
         <ThemeProvider
           attribute="data-theme"
-          defaultTheme="light"
+          defaultTheme="dark"
           enableSystem={false}
           storageKey="theme"
           disableTransitionOnChange
